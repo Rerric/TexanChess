@@ -14,6 +14,8 @@ public class Piece : MonoBehaviour
 
     private ThirdPersonMovement moveScript;
     public CharacterController controller;
+    public CapsuleCollider collider;
+    public Rigidbody rigidbody;
 
     public GameObject gameManager;
 
@@ -39,13 +41,19 @@ public class Piece : MonoBehaviour
 
         if (myTurn == true)
         {
+            //while it's myTurn : control me and ignore natural physics
             moveScript.enabled = true;
             controller.enabled = true;
+            collider.enabled = false;
+            rigidbody.isKinematic = true;
         }
-        else
+        else 
         {
+            //otherwise : I can't be controlled and physics will affect me
             moveScript.enabled = false;
             controller.enabled = false;
+            collider.enabled = true;
+            rigidbody.isKinematic = false;
         }
 
     }
