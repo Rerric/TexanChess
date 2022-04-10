@@ -10,6 +10,10 @@ public class Piece : MonoBehaviour
 
     public bool isKing; //"Only one may be king.." -some guy
 
+    public bool myTurn; //whether or not it's this piece's turn
+
+    private ThirdPersonMovement moveScript;
+
     public GameObject gameManager;
 
     public Transform pieceTransform; //this piece's transform 
@@ -18,6 +22,7 @@ public class Piece : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
+        moveScript = GetComponent<ThirdPersonMovement>();
     }
 
     // Update is called once per frame
@@ -26,7 +31,19 @@ public class Piece : MonoBehaviour
         var gmScript = gameManager.GetComponent<GameManager>();
         if (gmScript.turn == pieceID)
         {
-            gmScript.pieceToFollow = pieceTransform;
+            gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
+            myTurn = true;
         }
+        else myTurn = false;
+
+        if (myTurn == true)
+        {
+            moveScript.enabled = true;
+        }
+        else
+        {
+            moveScript.enabled = false;
+        }
+
     }
 }

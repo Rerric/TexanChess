@@ -8,6 +8,7 @@ public class ThirdPersonMovement : MonoBehaviour
     PlayerControls controls;
 
     public CharacterController controller;
+    public GameObject mainCam;
     public Transform cam;
 
     Vector2 move;
@@ -23,6 +24,9 @@ public class ThirdPersonMovement : MonoBehaviour
 
         controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+        mainCam = GameObject.Find("Main Camera");
+        cam = mainCam.GetComponent<Transform>();
     }
 
     void OnEnable()

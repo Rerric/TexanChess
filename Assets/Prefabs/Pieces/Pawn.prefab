@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 7712056588359406965}
   - component: {fileID: 7712056588359406964}
   - component: {fileID: 7712056588359406963}
+  - component: {fileID: -3303788681841462201}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Player
@@ -148,8 +149,27 @@ MonoBehaviour:
   pieceID: 0
   team: 0
   isKing: 0
+  myTurn: 0
+  moveScript: {fileID: -3303788681841462201}
   gameManager: {fileID: 0}
   pieceTransform: {fileID: 7712056588359406965}
+--- !u!114 &-3303788681841462201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7712056588359406962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0d5dc35ecfd194ab8d939686905798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7712056588359406964}
+  mainCam: {fileID: 0}
+  cam: {fileID: 0}
+  speed: 6
+  turnSpeed: 0.1
 --- !u!1001 &728188372199256888
 PrefabInstance:
   m_ObjectHideFlags: 0
