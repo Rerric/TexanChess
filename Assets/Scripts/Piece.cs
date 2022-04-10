@@ -13,6 +13,7 @@ public class Piece : MonoBehaviour
     public bool myTurn; //whether or not it's this piece's turn
 
     private ThirdPersonMovement moveScript;
+    public CharacterController controller;
 
     public GameObject gameManager;
 
@@ -39,10 +40,12 @@ public class Piece : MonoBehaviour
         if (myTurn == true)
         {
             moveScript.enabled = true;
+            controller.enabled = true;
         }
         else
         {
             moveScript.enabled = false;
+            controller.enabled = false;
         }
 
     }
