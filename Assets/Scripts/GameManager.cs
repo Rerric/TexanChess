@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public List<int> pieceIDs = new List<int>(); //stores piece ID's
 
-    public Transform[] pieceTransforms;
+    public Transform pieceToFollow; //which piece the camera is currently following
 
     //Important Scripts & Objects to communicate with
     public CameraController cameraScript;
@@ -136,7 +136,6 @@ public class GameManager : MonoBehaviour
 
     void UpdateCamera()
     {
-        var pieceToFollow = pieceTransforms[turn - 1];
 
         //tell the camera what object (Transform) to follow
         cameraScript._follow = pieceToFollow;
@@ -147,7 +146,7 @@ public class GameManager : MonoBehaviour
     public void NextTurn()
     {
         turn += 1;
-        if (turn > teams)
+        if (turn > pieceIDs.Count)
         {
             turn = 1;
         }
