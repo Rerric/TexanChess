@@ -188,7 +188,7 @@ MonoBehaviour:
   controller: {fileID: 7712056588359406964}
   collider: {fileID: -6790797190300157281}
   rigidbody: {fileID: 6408029597625824334}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 6593430651775738466, guid: 648ac99caa7ed4648b58c1db071d360b, type: 3}
   pieceTransform: {fileID: 7712056588359406965}
 --- !u!114 &-3303788681841462201
 MonoBehaviour:
