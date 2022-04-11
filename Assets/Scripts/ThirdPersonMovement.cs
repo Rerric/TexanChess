@@ -15,7 +15,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float speed = 6f;
     Vector3 velocity;
-    public float gravity = -9.81f;
+    public float gravity = -9.81f; //note this only affects the piece while the controller is enabled
     public float jumpHeight;
 
     public Transform groundCheck;
@@ -72,8 +72,6 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDirection.normalized * speed * Time.deltaTime);
         }
-
-        //jumping
         
         //gravity
         velocity.y += gravity * Time.deltaTime;
