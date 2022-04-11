@@ -14,6 +14,14 @@ public class ThirdPersonMovement : MonoBehaviour
     Vector2 move;
 
     public float speed = 6f;
+    Vector3 velocity;
+    public float gravity = -9.81f;
+    public float jumpHeight;
+
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    public bool isGrounded;
 
     public float turnSpeed = 0.1f;
     private float turnVelocity;
@@ -24,6 +32,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
         controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+        controls.Gameplay.Jump.performed += ctx => Jump();
 
         mainCam = GameObject.Find("Main Camera");
         cam = mainCam.GetComponent<Transform>();
@@ -42,10 +51,18 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
         float horizontal = move.x;
         float vertical = move.y;
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+        //movement
         if (direction.magnitude >= 0.1)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -54,6 +71,21 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDirection.normalized * speed * Time.deltaTime);
+        }
+
+        //jumping
+        
+        //gravity
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    void Jump()
+    {
+        if (isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
 }

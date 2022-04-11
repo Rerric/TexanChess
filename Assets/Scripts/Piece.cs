@@ -12,6 +12,9 @@ public class Piece : MonoBehaviour
 
     public bool myTurn; //whether or not it's this piece's turn
 
+    public float healthMax;
+    public float health;
+
     private ThirdPersonMovement moveScript;
     public CharacterController controller;
     public CapsuleCollider collider;
@@ -26,6 +29,8 @@ public class Piece : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         moveScript = GetComponent<ThirdPersonMovement>();
+
+        health = healthMax;
     }
 
     // Update is called once per frame
