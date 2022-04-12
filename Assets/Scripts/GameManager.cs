@@ -32,11 +32,16 @@ public class GameManager : MonoBehaviour
     public Vector3[] spawnPoints1 = new Vector3[5];
     public Vector3[] spawnPoints2 = new Vector3[5];
 
+    public Canvas defaultCanvas;
+    public Canvas aimCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
         controls = new PlayerControls();
         controls.Gameplay.Enable();
+
+        Cursor.lockState = CursorLockMode.Locked;
 
         controls.Gameplay.Fire.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
 
@@ -155,5 +160,10 @@ public class GameManager : MonoBehaviour
         {
             turn = 1;
         }
+    }
+
+    void UpdateCanvas()
+    {
+
     }
 }

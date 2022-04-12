@@ -16,6 +16,7 @@ public class Piece : MonoBehaviour
     public float health;
 
     private ThirdPersonMovement moveScript;
+    private ThirdPersonAiming aimScript;
     public CharacterController controller;
     public CapsuleCollider collider;
     public Rigidbody rigidbody;
@@ -29,6 +30,7 @@ public class Piece : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         moveScript = GetComponent<ThirdPersonMovement>();
+        aimScript = GetComponent<ThirdPersonAiming>();
 
         health = healthMax;
     }
@@ -49,15 +51,28 @@ public class Piece : MonoBehaviour
             //while it's myTurn : control me and ignore natural physics
             gameObject.layer = 7;
             moveScript.enabled = true;
+            aimScript.enabled = true;
             controller.enabled = true;
             collider.enabled = false;
             rigidbody.isKinematic = true;
+
+            if (aimScript.isAiming)
+            {
+                gmScript.aimCanvas.enabled = true;
+                gmScript.defaultCanvas.enabled = false;
+            }
+            else
+            {
+                gmScript.aimCanvas.enabled = false;
+                gmScript.defaultCanvas.enabled = true;
+            }
         }
         else 
         {
             //otherwise : I can't be controlled and physics will affect me
             gameObject.layer = 6;
             moveScript.enabled = false;
+            aimScript.enabled = false;
             controller.enabled = false;
             collider.enabled = true;
             rigidbody.isKinematic = false;
