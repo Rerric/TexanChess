@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.AddForce(transform.right * speed * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(transform.right * speed, ForceMode.Impulse);
     }
 
     // Update is called once per frame

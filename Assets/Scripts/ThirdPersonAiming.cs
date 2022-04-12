@@ -16,6 +16,9 @@ public class ThirdPersonAiming : MonoBehaviour
 
     private ThirdPersonMovement moveScript;
 
+    public float turnSpeed = 0.1f;
+    private float turnVelocity;
+
     public bool isAiming;
 
     public GameObject arms;
@@ -54,8 +57,16 @@ public class ThirdPersonAiming : MonoBehaviour
     {
         if (isAiming)
         {
-            arms.transform.rotation = cam.rotation;
+            //rotate piece itself
+            var camRotationY = cam.eulerAngles.y;
+            float angleY = Mathf.SmoothDampAngle(transform.eulerAngles.y, camRotationY, ref turnVelocity, turnSpeed);
+            transform.rotation = Quaternion.Euler(0f, angleY, 0f);
+
+            //rotate arms for aiming up/down
+            var camRotationX = cam.eulerAngles.x;
+            arms.transform.rotation = Quaternion.Euler(camRotationX, angleY, 0f);
         }
+        else arms.transform.rotation = transform.rotation;
     }
 
     void TakeAim()

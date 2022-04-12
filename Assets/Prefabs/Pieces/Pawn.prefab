@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4300435125187191021}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.46, y: 0.167, z: 1.186}
+  m_LocalPosition: {x: 0.46, y: 0.167, z: 1.441}
   m_LocalScale: {x: 0.0012894656, y: 0.0012894658, z: 0.0012894656}
   m_Children: []
   m_Father: {fileID: 7012172918776637169}
@@ -253,6 +253,11 @@ MonoBehaviour:
   collider: {fileID: 1132232811518763239}
   rigidbody: {fileID: 6408029597625824334}
   gameManager: {fileID: 6593430651775738466, guid: 648ac99caa7ed4648b58c1db071d360b, type: 3}
+  body: {fileID: 4343615080369066311}
+  newMaterial:
+  - {fileID: 2100000, guid: 5be57d2bdae513c498d0aa9d7a0a36fe, type: 2}
+  - {fileID: 2100000, guid: 5be57d2bdae513c498d0aa9d7a0a36fe, type: 2}
+  - {fileID: 2100000, guid: 5abfac5cac15da94a8aa4d002f2850fd, type: 2}
   pieceTransform: {fileID: 7712056588359406965}
 --- !u!114 &-3303788681841462201
 MonoBehaviour:
@@ -298,6 +303,7 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   cam: {fileID: 0}
   aimingCam: {fileID: 0}
+  turnSpeed: 0.1
   isAiming: 0
   arms: {fileID: 5580462263653188420}
   firePoint: {fileID: 1762687505077653170}
@@ -464,6 +470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51a26e93ea044e4c84b973fc46badcb, type: 3}
+--- !u!1 &4343615080369066311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b51a26e93ea044e4c84b973fc46badcb, type: 3}
+  m_PrefabInstance: {fileID: 3496753976670465046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3966631453300476925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b51a26e93ea044e4c84b973fc46badcb, type: 3}

@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
             var id = i + 1;
 
-            var king = Instantiate(pieces[id], spawn, transform.rotation);
+            var king = Instantiate(pieces[0], spawn, transform.rotation);
             var kingTransform = king.GetComponent<Transform>();
             var kingScript = king.GetComponent<Piece>();
             kingScript.isKing = true;
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
                 if (id == 1) //Spawn piece for team 1
                 {
-                    var piece = Instantiate(pieces[1], spawnPoints1[counter], transform.rotation);
+                    var piece = Instantiate(pieces[0], spawnPoints1[counter], transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
                     pieceScript.team = id;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
                 if (id == 2) //Spawn piece for team 2
                 {
-                    var piece = Instantiate(pieces[2], spawnPoints2[counter], transform.rotation);
+                    var piece = Instantiate(pieces[0], spawnPoints2[counter], transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
                     pieceScript.team = id;

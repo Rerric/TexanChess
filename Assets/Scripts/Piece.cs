@@ -22,6 +22,9 @@ public class Piece : MonoBehaviour
     public Rigidbody rigidbody;
 
     public GameObject gameManager;
+    public GameObject body;
+
+    public Material[] newMaterial;
 
     public Transform pieceTransform; //this piece's transform 
 
@@ -33,6 +36,8 @@ public class Piece : MonoBehaviour
         aimScript = GetComponent<ThirdPersonAiming>();
 
         health = healthMax;
+
+        body.GetComponent<Renderer>().material = newMaterial[team];
     }
 
     // Update is called once per frame
