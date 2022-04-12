@@ -1785,6 +1785,8 @@ MonoBehaviour:
   turn: 0
   pieces:
   - {fileID: 7712056588359406962, guid: 548bb680afaa2dd4e8bf33b8e0e935c7, type: 3}
+  - {fileID: 6354761174432252633, guid: e30c36af6e2410346a4f1466841a48b4, type: 3}
+  - {fileID: 5489747552932179919, guid: 3d4176e9ab3cdc9439c6c52f48c719bb, type: 3}
   pieceIDs: 
   pieceToFollow: {fileID: 0}
   cameraScript1: {fileID: 0}
