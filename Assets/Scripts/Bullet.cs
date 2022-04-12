@@ -24,11 +24,11 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer == 6) //if it's a non-player piece
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.2f);
         }
         else
         {
-            //something
+            Destroy(gameObject, 2.0f);
         }
     }
 }
