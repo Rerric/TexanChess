@@ -19,8 +19,9 @@ public class ThirdPersonMovement : MonoBehaviour
     public float jumpHeight;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance;
     public LayerMask groundMask;
+    public LayerMask entityMask;
     public bool isGrounded;
 
     public float turnSpeed = 0.1f;
@@ -51,7 +52,7 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        CheckPhysics();
 
         if (isGrounded && velocity.y < 0)
         {
@@ -77,6 +78,16 @@ public class ThirdPersonMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void CheckPhysics()
+    {
+        if (Physics.CheckSphere(groundCheck.position, groundDistance, groundMask) || Physics.CheckSphere(groundCheck.position, groundDistance, entityMask))
+        {
+            isGrounded = true;
+        }
+        else isGrounded = false;
+        
     }
 
     void Jump()

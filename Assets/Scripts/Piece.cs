@@ -47,6 +47,7 @@ public class Piece : MonoBehaviour
         if (myTurn == true)
         {
             //while it's myTurn : control me and ignore natural physics
+            gameObject.layer = 7;
             moveScript.enabled = true;
             controller.enabled = true;
             collider.enabled = false;
@@ -55,6 +56,7 @@ public class Piece : MonoBehaviour
         else 
         {
             //otherwise : I can't be controlled and physics will affect me
+            gameObject.layer = 6;
             moveScript.enabled = false;
             controller.enabled = false;
             collider.enabled = true;
