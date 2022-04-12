@@ -300,6 +300,9 @@ MonoBehaviour:
   aimingCam: {fileID: 0}
   isAiming: 0
   arms: {fileID: 5580462263653188420}
+  firePoint: {fileID: 1762687505077653170}
+  projectiles:
+  - {fileID: 7734315567904623264, guid: f0e10989ea1f71f41ab130d642978ec9, type: 3}
 --- !u!54 &6408029597625824334
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -20,12 +20,16 @@ public class ThirdPersonAiming : MonoBehaviour
 
     public GameObject arms;
 
+    public Transform firePoint; //place where the bullet / projectile is created
+    public GameObject[] projectiles;
+
     void Awake()
     {
         controls = new PlayerControls();
 
         controls.Gameplay.TakeAim.performed += ctx => TakeAim();
         controls.Gameplay.TakeAim.canceled += ctx => StopAim();
+        controls.Gameplay.Fire.performed += ctx => Fire();
 
         mainCam = GameObject.Find("Main Camera");
         cam = mainCam.GetComponent<Transform>();
@@ -60,7 +64,7 @@ public class ThirdPersonAiming : MonoBehaviour
         isAiming = true;
         Debug.Log("Now Aiming!");
         //movescript
-        aimingCam.Priority += 10;
+        aimingCam.Priority += 10; //switch camera
     }
 
     void StopAim()
@@ -69,5 +73,10 @@ public class ThirdPersonAiming : MonoBehaviour
         Debug.Log("Stopped Aiming!");
         //movescript
         aimingCam.Priority -= 10;
+    }
+
+    void Fire()
+    {
+        Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
     }
 }

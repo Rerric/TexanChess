@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        controls.Gameplay.Fire.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
+        controls.Gameplay.EndTurn.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
 
         teams = Players;
         turn = 1; //team 1 starts first
@@ -160,10 +160,5 @@ public class GameManager : MonoBehaviour
         {
             turn = 1;
         }
-    }
-
-    void UpdateCanvas()
-    {
-
     }
 }

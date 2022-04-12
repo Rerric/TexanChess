@@ -71,6 +71,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EndTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""c76592b6-c0a6-4d11-bc0f-fd8fabfd8ed0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""TakeAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9493d7d-1585-4436-a2fd-bd2608af5974"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EndTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d26742fa-f181-43c0-8c1c-086f6c1e4bcc"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EndTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -240,6 +271,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_TakeAim = m_Gameplay.FindAction("TakeAim", throwIfNotFound: true);
+        m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,6 +336,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Fire;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_TakeAim;
+    private readonly InputAction m_Gameplay_EndTurn;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -313,6 +346,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @TakeAim => m_Wrapper.m_Gameplay_TakeAim;
+        public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -337,6 +371,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TakeAim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTakeAim;
                 @TakeAim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTakeAim;
                 @TakeAim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTakeAim;
+                @EndTurn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEndTurn;
+                @EndTurn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEndTurn;
+                @EndTurn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEndTurn;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -356,6 +393,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TakeAim.started += instance.OnTakeAim;
                 @TakeAim.performed += instance.OnTakeAim;
                 @TakeAim.canceled += instance.OnTakeAim;
+                @EndTurn.started += instance.OnEndTurn;
+                @EndTurn.performed += instance.OnEndTurn;
+                @EndTurn.canceled += instance.OnEndTurn;
             }
         }
     }
@@ -367,5 +407,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnTakeAim(InputAction.CallbackContext context);
+        void OnEndTurn(InputAction.CallbackContext context);
     }
 }
