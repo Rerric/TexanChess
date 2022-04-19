@@ -249,9 +249,10 @@ MonoBehaviour:
   myTurn: 0
   healthMax: 50
   health: 0
-  movementMax: 10
+  movementMax: 25
   distanceMoved: 0
   startingPos: {x: 0, y: 0, z: 0}
+  hasFired: 0
   controller: {fileID: 7712056588359406964}
   collider: {fileID: 1132232811518763239}
   rigidbody: {fileID: 6408029597625824334}
