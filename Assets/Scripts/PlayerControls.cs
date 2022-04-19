@@ -89,6 +89,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""e0bc822f-4bdd-403d-bc62-411f848a3338"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""23706a59-3e8b-4eac-8367-90b1bad78df5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""613d2d8f-370a-450f-9f7c-dc35b8e8c989"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -249,7 +276,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d9493d7d-1585-4436-a2fd-bd2608af5974"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -260,7 +287,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d26742fa-f181-43c0-8c1c-086f6c1e4bcc"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -278,6 +305,94 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f709ba2e-0262-4e3d-b40e-74905598a6bd"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93aa73b6-81a7-4619-adb2-6b2043a34f29"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ea9b0d3-201b-48e5-9a59-7ebf5fc431dc"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74d84efc-dc78-43e1-ac8e-98c6f1225ae6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07f47ac9-f86b-40af-aaa6-3ebfc7d9dfcb"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""722daee8-743f-4d0e-b2ab-9da83191be80"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21df5077-a144-4ed8-b1e8-2be047cfb072"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""625dfbd5-57a7-4751-87b0-c383e80c3e07"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -293,6 +408,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_TakeAim = m_Gameplay.FindAction("TakeAim", throwIfNotFound: true);
         m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
         m_Gameplay_Quit = m_Gameplay.FindAction("Quit", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_CycleLeft = m_Gameplay.FindAction("CycleLeft", throwIfNotFound: true);
+        m_Gameplay_CycleRight = m_Gameplay.FindAction("CycleRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -359,6 +477,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_TakeAim;
     private readonly InputAction m_Gameplay_EndTurn;
     private readonly InputAction m_Gameplay_Quit;
+    private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_CycleLeft;
+    private readonly InputAction m_Gameplay_CycleRight;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -370,6 +491,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @TakeAim => m_Wrapper.m_Gameplay_TakeAim;
         public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
         public InputAction @Quit => m_Wrapper.m_Gameplay_Quit;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @CycleLeft => m_Wrapper.m_Gameplay_CycleLeft;
+        public InputAction @CycleRight => m_Wrapper.m_Gameplay_CycleRight;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +524,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnQuit;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @CycleLeft.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleLeft;
+                @CycleLeft.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleLeft;
+                @CycleLeft.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleLeft;
+                @CycleRight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleRight;
+                @CycleRight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleRight;
+                @CycleRight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleRight;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -425,6 +558,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @CycleLeft.started += instance.OnCycleLeft;
+                @CycleLeft.performed += instance.OnCycleLeft;
+                @CycleLeft.canceled += instance.OnCycleLeft;
+                @CycleRight.started += instance.OnCycleRight;
+                @CycleRight.performed += instance.OnCycleRight;
+                @CycleRight.canceled += instance.OnCycleRight;
             }
         }
     }
@@ -438,5 +580,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnTakeAim(InputAction.CallbackContext context);
         void OnEndTurn(InputAction.CallbackContext context);
         void OnQuit(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnCycleLeft(InputAction.CallbackContext context);
+        void OnCycleRight(InputAction.CallbackContext context);
     }
 }
