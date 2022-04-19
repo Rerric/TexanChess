@@ -15,6 +15,7 @@ public class ThirdPersonAiming : MonoBehaviour
     public CinemachineVirtualCamera aimingCam;
 
     private ThirdPersonMovement moveScript;
+    private Piece pieceScript;
 
     public float turnSpeed = 0.1f;
     private float turnVelocity;
@@ -40,14 +41,15 @@ public class ThirdPersonAiming : MonoBehaviour
         aimingCam = GameObject.Find("Aiming Camera").GetComponent<CinemachineVirtualCamera>();
 
         moveScript = GetComponent<ThirdPersonMovement>();
+        pieceScript = GetComponent<Piece>();
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
         controls.Gameplay.Enable();
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         controls.Gameplay.Disable();
     }
@@ -88,6 +90,10 @@ public class ThirdPersonAiming : MonoBehaviour
 
     void Fire()
     {
-        Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
+        if (pieceScript.hasFired == false)
+        {
+            Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
+            pieceScript.hasFired = true;
+        }
     }
 }

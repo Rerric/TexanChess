@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         controls.Gameplay.EndTurn.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
+        controls.Gameplay.Quit.performed += ctx => Application.Quit();
 
         teams = Players;
         turn = 1; //team 1 starts first

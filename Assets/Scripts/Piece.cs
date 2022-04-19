@@ -15,6 +15,13 @@ public class Piece : MonoBehaviour
     public float healthMax;
     public float health;
 
+    public float movementMax; //how far this piece can move in one turn
+    public float distanceMoved; //how far this piece has moved this turn
+    public Vector3 startingPos;
+    private bool set; //checks if the startingPos is set for this turn
+
+    public bool hasFired; //checks if this piece has used an attack this turn
+
     private ThirdPersonMovement moveScript;
     private ThirdPersonAiming aimScript;
     public CharacterController controller;
@@ -31,6 +38,8 @@ public class Piece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        set = false;
+
         gameManager = GameObject.Find("GameManager");
         moveScript = GetComponent<ThirdPersonMovement>();
         aimScript = GetComponent<ThirdPersonAiming>();
@@ -55,11 +64,17 @@ public class Piece : MonoBehaviour
         {
             //while it's myTurn : control me and ignore natural physics
             gameObject.layer = 7;
-            moveScript.enabled = true;
-            aimScript.enabled = true;
-            controller.enabled = true;
-            collider.enabled = false;
-            rigidbody.isKinematic = true;
+            EnableScripts();
+
+            if (set == false)
+            {
+                startingPos = new Vector3(pieceTransform.position.x, 0f, pieceTransform.position.z);
+                set = true;
+                hasFired = false;
+            }
+
+            CheckDistance(); //calculate distance moved this turn
+            if (distanceMoved >= movementMax) moveScript.OnDisable();
 
             if (aimScript.isAiming)
             {
@@ -76,12 +91,35 @@ public class Piece : MonoBehaviour
         {
             //otherwise : I can't be controlled and physics will affect me
             gameObject.layer = 6;
-            moveScript.enabled = false;
-            aimScript.enabled = false;
-            controller.enabled = false;
-            collider.enabled = true;
-            rigidbody.isKinematic = false;
+            DisableScripts();
+
+            set = false;
         }
 
+    }
+
+    void EnableScripts()
+    {
+        moveScript.enabled = true;
+        aimScript.enabled = true;
+        controller.enabled = true;
+        collider.enabled = false;
+        rigidbody.isKinematic = true;
+    }
+
+    void DisableScripts()
+    {
+        moveScript.enabled = false;
+        aimScript.enabled = false;
+        controller.enabled = false;
+        collider.enabled = true;
+        rigidbody.isKinematic = false;
+    }
+
+    void CheckDistance()
+    {
+        Vector3 currentPos = new Vector3(pieceTransform.position.x, 0f, pieceTransform.position.z);
+        float distance = Vector3.Distance(startingPos, currentPos);
+        distanceMoved = distance;
     }
 }

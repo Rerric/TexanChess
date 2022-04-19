@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f69d8d2-cd7e-4b39-ba61-becd59d39b35"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -258,6 +267,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""EndTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b10614a-cf64-4fc1-b457-f4b06244d17d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -272,6 +292,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_TakeAim = m_Gameplay.FindAction("TakeAim", throwIfNotFound: true);
         m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
+        m_Gameplay_Quit = m_Gameplay.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +358,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_TakeAim;
     private readonly InputAction m_Gameplay_EndTurn;
+    private readonly InputAction m_Gameplay_Quit;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -347,6 +369,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @TakeAim => m_Wrapper.m_Gameplay_TakeAim;
         public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
+        public InputAction @Quit => m_Wrapper.m_Gameplay_Quit;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +397,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @EndTurn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEndTurn;
                 @EndTurn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEndTurn;
                 @EndTurn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEndTurn;
+                @Quit.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnQuit;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -396,6 +422,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @EndTurn.started += instance.OnEndTurn;
                 @EndTurn.performed += instance.OnEndTurn;
                 @EndTurn.canceled += instance.OnEndTurn;
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
             }
         }
     }
@@ -408,5 +437,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnTakeAim(InputAction.CallbackContext context);
         void OnEndTurn(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
 }

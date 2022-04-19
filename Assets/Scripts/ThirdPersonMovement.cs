@@ -39,12 +39,12 @@ public class ThirdPersonMovement : MonoBehaviour
         cam = mainCam.GetComponent<Transform>();
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
         controls.Gameplay.Enable();
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         controls.Gameplay.Disable();
     }
