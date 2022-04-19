@@ -76,7 +76,7 @@ public class ThirdPersonAiming : MonoBehaviour
         //toggle Aiming State for this object
         isAiming = true;
         Debug.Log("Now Aiming!");
-        //movescript
+        moveScript.OnDisable();
         aimingCam.Priority += 10; //switch camera
     }
 
@@ -84,7 +84,7 @@ public class ThirdPersonAiming : MonoBehaviour
     {
         isAiming = false;
         Debug.Log("Stopped Aiming!");
-        //movescript
+        moveScript.OnEnable();
         aimingCam.Priority -= 10;
     }
 
