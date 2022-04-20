@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public float pieceID; //unique Piece ID in the game
+    public int pieceID; //unique Piece ID in the game
 
     public int team; //what team this piece is on
 
@@ -31,6 +31,7 @@ public class Piece : MonoBehaviour
     public Rigidbody rigidbody;
 
     public GameObject gameManager;
+    public GameManager gmScript;
     public GameObject body;
 
     public Material[] newMaterial;
@@ -43,6 +44,7 @@ public class Piece : MonoBehaviour
         set = false;
 
         gameManager = GameObject.Find("GameManager");
+        gmScript = gameManager.GetComponent<GameManager>();
         moveScript = GetComponent<ThirdPersonMovement>();
         aimScript = GetComponent<ThirdPersonAiming>();
 
@@ -54,7 +56,6 @@ public class Piece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var gmScript = gameManager.GetComponent<GameManager>();
         if (gmScript.turn == pieceID)
         {
             gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
@@ -76,6 +77,7 @@ public class Piece : MonoBehaviour
             }
 
             CheckDistance(); //calculate distance moved this turn
+            UpdateMovementMeter();
             if (distanceMoved >= movementMax) moveScript.OnDisable();
 
             if (aimScript.isAiming)
@@ -131,6 +133,35 @@ public class Piece : MonoBehaviour
     {
         var scaleX = (health / healthMax) * 0.09f;
         healthBarJuice.transform.localScale = new Vector3(scaleX, 0.08f, 1);
+
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+
+    void UpdateMovementMeter()
+    {
+        var scaleX = (distanceMoved / movementMax) * 2.73f;
+
+        gmScript.movementBarJuice.transform.localScale = new Vector3(scaleX, 1.8f, 1);
+    }
+
+    public void Death()
+    {
+        var id = pieceID;
+        Debug.Log("Ded" + " " + id);
+        gmScript.UpdatePieceIDs(id);
         
+        Destroy(healthBar);
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.layer == 9) //killbox
+        {
+            Death();
+        }
     }
 }
