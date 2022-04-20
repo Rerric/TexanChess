@@ -9,7 +9,7 @@ public class WorldUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.parent = null;
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class WorldUI : MonoBehaviour
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
 
-
         transform.position = follow.position;
+
     }
 }

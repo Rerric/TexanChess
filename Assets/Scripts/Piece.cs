@@ -14,6 +14,8 @@ public class Piece : MonoBehaviour
 
     public float healthMax;
     public float health;
+    public GameObject healthBar;
+    public GameObject healthBarJuice;
 
     public float movementMax; //how far this piece can move in one turn
     public float distanceMoved; //how far this piece has moved this turn
@@ -96,6 +98,8 @@ public class Piece : MonoBehaviour
             set = false;
         }
 
+        UpdateHealth();
+
     }
 
     void EnableScripts()
@@ -121,5 +125,12 @@ public class Piece : MonoBehaviour
         Vector3 currentPos = new Vector3(pieceTransform.position.x, 0f, pieceTransform.position.z);
         float distance = Vector3.Distance(startingPos, currentPos);
         distanceMoved = distance;
+    }
+
+    void UpdateHealth()
+    {
+        var scaleX = (health / healthMax) * 0.09f;
+        healthBarJuice.transform.localScale = new Vector3(scaleX, 0.08f, 1);
+        
     }
 }
