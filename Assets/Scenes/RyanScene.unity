@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 564940698}
   - component: {fileID: 564940702}
   - component: {fileID: 564940701}
+  - component: {fileID: 564940700}
   m_Layer: 0
   m_Name: Third Person Camera
   m_TagString: Untagged
@@ -758,6 +759,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &564940700
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564940697}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84946b57b62d146469be6edcd6179c0f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &564940701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +843,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
   cameraLookAt: {fileID: 1312887661}
+  isAiming: 0
 --- !u!1 &652792822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.2, y: 0.2, z: 0}
+  Damping: {x: 0.2, y: 0.2, z: 0.2}
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1

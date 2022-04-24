@@ -14,6 +14,11 @@ public class CameraController : MonoBehaviour
 
     private Cinemachine.CinemachineInputProvider inputAxisProvider;
 
+    public bool isAiming;
+
+    Animator animator;
+    int isAimingParam = Animator.StringToHash("isAiming");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,8 @@ public class CameraController : MonoBehaviour
         inputAxisProvider = GetComponent<Cinemachine.CinemachineInputProvider>();
         xAxis.SetInputAxisProvider(0, inputAxisProvider);
         yAxis.SetInputAxisProvider(1, inputAxisProvider);
+
+        animator = GetComponent<Animator>();
 
     }
 
@@ -32,5 +39,12 @@ public class CameraController : MonoBehaviour
         yAxis.Update(Time.deltaTime);
 
         cameraLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
+
+        if (isAiming)
+        {
+            animator.SetBool(isAimingParam, false);
+        }
+        else animator.SetBool(isAimingParam, true);
     }
+
 }

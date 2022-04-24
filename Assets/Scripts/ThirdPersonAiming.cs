@@ -13,6 +13,7 @@ public class ThirdPersonAiming : MonoBehaviour
     public Transform cam;
 
     private ThirdPersonMovement moveScript;
+    private CameraController camScript;
     private Piece pieceScript;
 
     public float turnSpeed = 0.1f;
@@ -34,6 +35,7 @@ public class ThirdPersonAiming : MonoBehaviour
         controls.Gameplay.Fire.performed += ctx => Fire();
 
         mainCam = GameObject.Find("Main Camera");
+        camScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
         cam = mainCam.GetComponent<Transform>();
 
         moveScript = GetComponent<ThirdPersonMovement>();
@@ -72,6 +74,7 @@ public class ThirdPersonAiming : MonoBehaviour
         //toggle Aiming State for this object
         isAiming = true;
         Debug.Log("Now Aiming!");
+        camScript.isAiming = true;
         moveScript.OnDisable();
         
     }
@@ -80,6 +83,7 @@ public class ThirdPersonAiming : MonoBehaviour
     {
         isAiming = false;
         Debug.Log("Stopped Aiming!");
+        camScript.isAiming = false;
         moveScript.OnEnable();
         
     }
