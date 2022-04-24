@@ -470,6 +470,7 @@ MonoBehaviour:
   collider: {fileID: 1132232811518763239}
   rigidbody: {fileID: 6408029597625824334}
   gameManager: {fileID: 6593430651775738466, guid: 648ac99caa7ed4648b58c1db071d360b, type: 3}
+  gmScript: {fileID: 0}
   body: {fileID: 4343615080369066311}
   newMaterial:
   - {fileID: 2100000, guid: 5be57d2bdae513c498d0aa9d7a0a36fe, type: 2}
@@ -519,7 +520,6 @@ MonoBehaviour:
   controller: {fileID: 0}
   mainCam: {fileID: 0}
   cam: {fileID: 0}
-  aimingCam: {fileID: 0}
   turnSpeed: 0.1
   isAiming: 0
   arms: {fileID: 5580462263653188420}

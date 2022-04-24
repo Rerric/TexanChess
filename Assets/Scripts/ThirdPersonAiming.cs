@@ -12,8 +12,6 @@ public class ThirdPersonAiming : MonoBehaviour
     public GameObject mainCam;
     public Transform cam;
 
-    public CinemachineVirtualCamera aimingCam;
-
     private ThirdPersonMovement moveScript;
     private Piece pieceScript;
 
@@ -37,8 +35,6 @@ public class ThirdPersonAiming : MonoBehaviour
 
         mainCam = GameObject.Find("Main Camera");
         cam = mainCam.GetComponent<Transform>();
-
-        aimingCam = GameObject.Find("Aiming Camera").GetComponent<CinemachineVirtualCamera>();
 
         moveScript = GetComponent<ThirdPersonMovement>();
         pieceScript = GetComponent<Piece>();
@@ -77,7 +73,7 @@ public class ThirdPersonAiming : MonoBehaviour
         isAiming = true;
         Debug.Log("Now Aiming!");
         moveScript.OnDisable();
-        aimingCam.Priority += 10; //switch camera
+        
     }
 
     void StopAim()
@@ -85,7 +81,7 @@ public class ThirdPersonAiming : MonoBehaviour
         isAiming = false;
         Debug.Log("Stopped Aiming!");
         moveScript.OnEnable();
-        aimingCam.Priority -= 10;
+        
     }
 
     void Fire()

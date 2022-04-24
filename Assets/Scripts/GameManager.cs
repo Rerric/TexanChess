@@ -19,11 +19,11 @@ public class GameManager : MonoBehaviour
 
     public List<int> pieceIDs = new List<int>(); //stores piece ID's
 
+    public GameObject cameraLookAt;
     public Transform pieceToFollow; //which piece the camera is currently following
 
     //Important Scripts & Objects to communicate with
-    public CameraController cameraScript1;
-    public AimingCameraController cameraScript2;
+    public CameraController cameraScript;
 
     public GameObject spawnPoint1; //Team 1 Spawn
     public GameObject spawnPoint2; //Team 2 Spawn
@@ -51,8 +51,7 @@ public class GameManager : MonoBehaviour
         teams = Players;
         turn = 1; //team 1 starts first
 
-        cameraScript1 = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
-        cameraScript2 = GameObject.Find("Aiming Camera").GetComponent<AimingCameraController>();
+        cameraScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
 
 
         FindSpawnPoints();
@@ -148,12 +147,8 @@ public class GameManager : MonoBehaviour
     void UpdateCamera()
     {
 
-        //tell the cameras what object (Transform) to follow
-        cameraScript1._follow = pieceToFollow;
-        cameraScript1._lookat = pieceToFollow;
-        cameraScript2._follow = pieceToFollow;
-        cameraScript2._lookat = pieceToFollow;
-
+        //tell the camera what object (Transform) to follow
+        if (pieceToFollow != null) cameraLookAt.transform.position = pieceToFollow.position;
     }
 
     public void NextTurn()

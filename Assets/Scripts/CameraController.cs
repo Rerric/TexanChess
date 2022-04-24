@@ -5,21 +5,32 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    public CinemachineFreeLook cinemachineFreeLook;
+    public CinemachineVirtualCamera vcam;
 
-    public Transform _follow;
-    public Transform _lookat;
+    public Cinemachine.AxisState xAxis;
+    public Cinemachine.AxisState yAxis;
+
+    public Transform cameraLookAt;
+
+    private Cinemachine.CinemachineInputProvider inputAxisProvider;
 
     // Start is called before the first frame update
     void Start()
     {
-        cinemachineFreeLook = gameObject.GetComponent <CinemachineFreeLook>();
+        vcam = gameObject.GetComponent <CinemachineVirtualCamera>();
+
+        inputAxisProvider = GetComponent<Cinemachine.CinemachineInputProvider>();
+        xAxis.SetInputAxisProvider(0, inputAxisProvider);
+        yAxis.SetInputAxisProvider(1, inputAxisProvider);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        cinemachineFreeLook.Follow = _follow;
-        cinemachineFreeLook.LookAt = _lookat;
+        xAxis.Update(Time.deltaTime);
+        yAxis.Update(Time.deltaTime);
+
+        cameraLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
     }
 }
