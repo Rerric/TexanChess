@@ -2231,9 +2231,12 @@ MonoBehaviour:
   Players: 2
   teams: 0
   turn: 0
-  pieces:
+  piecePrefabs:
   - {fileID: 7712056588359406962, guid: 548bb680afaa2dd4e8bf33b8e0e935c7, type: 3}
-  pieceIDs: 
+  pieces1: []
+  pieces2: []
+  t1Count: 0
+  t2Count: 0
   cameraLookAt: {fileID: 1312887660}
   pieceToFollow: {fileID: 0}
   cameraScript: {fileID: 0}

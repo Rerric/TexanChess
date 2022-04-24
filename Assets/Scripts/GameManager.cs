@@ -15,9 +15,15 @@ public class GameManager : MonoBehaviour
 
     public int turn; //what team's turn it currently is
 
-    public GameObject[] pieces;
+    private bool gameStarted; //determines if the game has begun
 
-    public List<int> pieceIDs = new List<int>(); //stores piece ID's
+    public GameObject[] piecePrefabs;
+
+    public List<GameObject> pieces1 = new List<GameObject>(); //stores pieces
+    public List<GameObject> pieces2 = new List<GameObject>();
+
+    public int t1Count; //team 1's turn tracker variable
+    public int t2Count; //team 2's turn tracker variable
 
     public GameObject cameraLookAt;
     public Transform pieceToFollow; //which piece the camera is currently following
@@ -50,9 +56,10 @@ public class GameManager : MonoBehaviour
 
         teams = Players;
         turn = 1; //team 1 starts first
+        t1Count = 2;
+        t2Count = 1;
 
         cameraScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
-
 
         FindSpawnPoints();
         GameStart();
@@ -62,11 +69,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateCamera();
+        if (pieces1.Count == 0) Debug.Log("Team 2 Wins!");
+        if (pieces2.Count == 0) Debug.Log("Team 1 Wins!");
     }
 
     void GameStart()
     {
         SpawnTeams(teams);
+        gameStarted = true;
     }
 
     void SpawnTeams(int teams)
@@ -82,48 +92,47 @@ public class GameManager : MonoBehaviour
             if (i == 0) spawn = spawn1;
             if (i == 1) spawn = spawn2;
 
-            var id = i + 1;
+            var id = 1;
 
-            var king = Instantiate(pieces[0], spawn, transform.rotation);
+            var king = Instantiate(piecePrefabs[0], spawn, transform.rotation);
             var kingTransform = king.GetComponent<Transform>();
             var kingScript = king.GetComponent<Piece>();
             kingScript.isKing = true;
-            kingScript.team = id;
+            kingScript.team = i + 1;
             kingScript.pieceID = id;
-            pieceIDs.Add(id);
+            if (kingScript.team == 1) pieces1.Add(king);
+            if (kingScript.team == 2) pieces2.Add(king);
 
             var counter = 1;
 
-            for (var e = id + 2; e < 11; e += 2) //Spawn 4 pieces for each team
+            for (var e = 0; e < 4; e++) //Spawn 4 pieces for each team
             {
-                var _id = e;
+                var _id = e + 2;
 
-                if (id == 1) //Spawn piece for team 1
+                if (kingScript.team == 1) //Spawn piece for team 1
                 {
-                    var piece = Instantiate(pieces[0], spawnPoints1[counter], transform.rotation);
+                    var piece = Instantiate(piecePrefabs[0], spawnPoints1[counter], transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
-                    pieceScript.team = id;
+                    pieceScript.team = kingScript.team;
                     pieceScript.pieceID = _id;
-                    pieceIDs.Add(_id);
+                    pieces1.Add(piece);
                 }
 
-                if (id == 2) //Spawn piece for team 2
+                if (kingScript.team == 2) //Spawn piece for team 2
                 {
-                    var piece = Instantiate(pieces[0], spawnPoints2[counter], transform.rotation);
+                    var piece = Instantiate(piecePrefabs[0], spawnPoints2[counter], transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
-                    pieceScript.team = id;
+                    pieceScript.team = kingScript.team;
                     pieceScript.pieceID = _id;
-                    pieceIDs.Add(_id);
+                    pieces2.Add(piece);
                 }
 
                 counter += 1;
 
             }   
         }
-        
-
 
     }
 
@@ -154,32 +163,45 @@ public class GameManager : MonoBehaviour
     public void NextTurn()
     {
         turn += 1;
-
-        if (turn > pieceIDs.Count)
+        if (turn > teams)
         {
             turn = 1;
         }
 
-        bool match = false;
-        for (int i = 0; i < pieceIDs.Count; i++)
+        if (turn == 1)
         {
-            if (pieceIDs[i] == turn)
-            {
-                match = true;
-            }
+            t1Count += 1;
+            if (t1Count > pieces1.Count) t1Count = 1;
         }
-        
-        if (match == false) NextTurn();
 
+        if (turn == 2)
+        { 
+            t2Count += 1;
+            if (t2Count > pieces2.Count) t2Count = 1;
+        }
     }
 
-    public void UpdatePieceIDs(int id)
+    public void UpdatePieceIDs(int team, int id)
     {
-        for (int i = 0; i < pieceIDs.Count; i++)
+        if (team == 1)
         {
-            if (pieceIDs[i] == id)
+            for (var i = 0; i < pieces1.Count; i++)
             {
-                pieceIDs[i] = 0;
+                if (pieces1[i].GetComponent<Piece>().pieceID > id)
+                {
+                    pieces1[i].GetComponent<Piece>().pieceID -= 1;
+                }
+            }
+        }
+
+        if (team == 2)
+        {
+            for (var i = 0; i < pieces2.Count; i++)
+            {
+                if (pieces2[i].GetComponent<Piece>().pieceID > id)
+                {
+                    pieces2[i].GetComponent<Piece>().pieceID -= 1;
+                }
             }
         }
     }

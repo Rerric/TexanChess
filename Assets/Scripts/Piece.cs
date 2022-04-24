@@ -56,15 +56,19 @@ public class Piece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gmScript.turn == pieceID)
+        if (team == 1 && gmScript.turn == 1 && gmScript.t1Count == pieceID)
         {
-            gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
+            myTurn = true;
+        }
+        else if (team == 2 && gmScript.turn == 2 && gmScript.t2Count == pieceID)
+        {
             myTurn = true;
         }
         else myTurn = false;
 
         if (myTurn == true)
         {
+            gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
             //while it's myTurn : control me and ignore natural physics
             gameObject.layer = 7;
             EnableScripts();
@@ -149,10 +153,13 @@ public class Piece : MonoBehaviour
 
     public void Death()
     {
-        var id = pieceID;
-        Debug.Log("Ded" + " " + id);
-        gmScript.UpdatePieceIDs(id);
-        
+        var piece = this.gameObject;
+        Debug.Log(piece + " " + "is Ded");
+        if (team == 1) gmScript.pieces1.Remove(piece);
+        if (team == 2) gmScript.pieces2.Remove(piece);
+
+        gmScript.UpdatePieceIDs(team, pieceID);
+
         Destroy(healthBar);
         Destroy(gameObject);
     }
