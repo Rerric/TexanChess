@@ -481,6 +481,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5abfac5cac15da94a8aa4d002f2850fd, type: 2}
   pieceTransform: {fileID: 7712056588359406965}
   deathSound: {fileID: 8300000, guid: c91011412d3047d44b47406b1c3d6833, type: 3}
+  cycleSound: {fileID: 8300000, guid: 1bbce161807266648b1403e8f09d6929, type: 3}
 --- !u!114 &-3303788681841462201
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class Piece : MonoBehaviour
 
     private AudioManager audioScript;
     public AudioClip deathSound;
+    public AudioClip cycleSound;
 
     // Start is called before the first frame update
     void Start()
@@ -146,6 +147,7 @@ public class Piece : MonoBehaviour
         currentWeapon += dir;
         if (currentWeapon >= weapons.Length) currentWeapon = 0;
         if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
+	audioScript.PlaySoundPyramind(cycleSound, gameObject);
     }
 
     void UpdateWeapon()
