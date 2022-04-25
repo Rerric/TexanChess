@@ -33,6 +33,8 @@ public class ThirdPersonAiming : MonoBehaviour
         controls.Gameplay.TakeAim.performed += ctx => TakeAim();
         controls.Gameplay.TakeAim.canceled += ctx => StopAim();
         controls.Gameplay.Fire.performed += ctx => Fire();
+        controls.Gameplay.CycleRight.performed += ctx => pieceScript.CycleWeapons(1);
+        controls.Gameplay.CycleLeft.performed += ctx => pieceScript.CycleWeapons(-1);
 
         mainCam = GameObject.Find("Main Camera");
         camScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
@@ -73,7 +75,6 @@ public class ThirdPersonAiming : MonoBehaviour
     {
         //toggle Aiming State for this object
         isAiming = true;
-        Debug.Log("Now Aiming!");
         camScript.isAiming = true;
         moveScript.OnDisable();
         
@@ -82,7 +83,6 @@ public class ThirdPersonAiming : MonoBehaviour
     void StopAim()
     {
         isAiming = false;
-        Debug.Log("Stopped Aiming!");
         camScript.isAiming = false;
         moveScript.OnEnable();
         

@@ -5,9 +5,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     public int pieceID; //unique Piece ID in the game
-
     public int team; //what team this piece is on
-
     public bool isKing; //"Only one may be king.." -some guy
 
     public bool myTurn; //whether or not it's this piece's turn
@@ -19,8 +17,11 @@ public class Piece : MonoBehaviour
 
     public float movementMax; //how far this piece can move in one turn
     public float distanceMoved; //how far this piece has moved this turn
-    public Vector3 startingPos;
+    private Vector3 startingPos;
     private bool set; //checks if the startingPos is set for this turn
+
+    public GameObject[] weapons = new GameObject[6]; //weapons / powerups this piece has in its inventory
+    private int currentWeapon;
 
     public bool hasFired; //checks if this piece has used an attack this turn
 
@@ -38,6 +39,9 @@ public class Piece : MonoBehaviour
 
     public Transform pieceTransform; //this piece's transform 
 
+    private AudioManager audioScript;
+    public AudioClip deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,10 +51,13 @@ public class Piece : MonoBehaviour
         gmScript = gameManager.GetComponent<GameManager>();
         moveScript = GetComponent<ThirdPersonMovement>();
         aimScript = GetComponent<ThirdPersonAiming>();
+        audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         health = healthMax;
 
         body.GetComponent<Renderer>().material = newMaterial[team];
+
+        currentWeapon = 0;
     }
 
     // Update is called once per frame
@@ -104,6 +111,7 @@ public class Piece : MonoBehaviour
             set = false;
         }
 
+        UpdateWeapon();
         UpdateHealth();
 
     }
@@ -133,6 +141,25 @@ public class Piece : MonoBehaviour
         distanceMoved = distance;
     }
 
+    public void CycleWeapons(int dir)
+    {
+        currentWeapon += dir;
+        if (currentWeapon >= weapons.Length) currentWeapon = 0;
+        if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
+    }
+
+    void UpdateWeapon()
+    {
+        for (var i = 0; i < weapons.Length; i++)
+        {
+            if (currentWeapon == i)
+            {
+                weapons[i].SetActive(true);
+            }
+            else weapons[i].SetActive(false);
+        }
+    }
+
     void UpdateHealth()
     {
         var scaleX = (health / healthMax) * 0.09f;
@@ -159,6 +186,8 @@ public class Piece : MonoBehaviour
         if (team == 2) gmScript.pieces2.Remove(piece);
 
         gmScript.UpdatePieceIDs(team, pieceID);
+
+        audioScript.PlaySoundPyramind(deathSound, gameObject);
 
         Destroy(healthBar);
         Destroy(gameObject);
