@@ -192,13 +192,19 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePieceIDs(int team, int id)
     {
+        var count = 0;
+
         if (team == 1)
         {
             for (var i = 0; i < pieces1.Count; i++)
             {
                 if (pieces1[i].GetComponent<Piece>().pieceID > id)
                 {
-                    if (t1Count != 1) t1Count -= 1;
+                    if (t1Count != 1 && count == 0)
+                    {
+                        t1Count -= 1;
+                        count = 1;
+                    }
                     pieces1[i].GetComponent<Piece>().pieceID -= 1;
                 }
             }
@@ -206,11 +212,16 @@ public class GameManager : MonoBehaviour
 
         if (team == 2)
         {
+            
             for (var i = 0; i < pieces2.Count; i++)
             {
                 if (pieces2[i].GetComponent<Piece>().pieceID > id)
                 {
-                    if (t2Count != 1) t2Count -= 1;
+                    if (t2Count != 1 && count == 0)
+                    {
+                        t2Count -= 1;
+                        count = 1;
+                    }
                     pieces2[i].GetComponent<Piece>().pieceID -= 1;
                 }
             }
