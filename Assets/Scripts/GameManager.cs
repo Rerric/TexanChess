@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public Canvas defaultCanvas;
     public Canvas aimCanvas;
     public Image movementBarJuice;
+    public Image teamFlag;
+    public Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateCamera();
+        UpdateUI();
         if (pieces1.Count == 0) Debug.Log("Team 2 Wins!");
         if (pieces2.Count == 0) Debug.Log("Team 1 Wins!");
     }
@@ -158,6 +161,12 @@ public class GameManager : MonoBehaviour
 
         //tell the camera what object (Transform) to follow
         if (pieceToFollow != null) cameraLookAt.transform.position = pieceToFollow.position;
+    }
+
+    void UpdateUI()
+    {
+        if (turn == 1) teamFlag.sprite = sprites[0];
+        if (turn == 2) teamFlag.sprite = sprites[1];
     }
 
     public void NextTurn()
