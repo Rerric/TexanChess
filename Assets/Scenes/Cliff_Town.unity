@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.78203, g: 0.6189678, b: 0.52322435, a: 1}
+  m_IndirectSpecularColor: {r: 0.7820282, g: 0.6189666, b: 0.52322406, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3627,6 +3627,10 @@ PrefabInstance:
     - target: {fileID: 804834115479370953, guid: 49860b278c47a70409a294491272146f, type: 3}
       propertyPath: m_Name
       value: Carriage
+      objectReference: {fileID: 0}
+    - target: {fileID: 804834115479370953, guid: 49860b278c47a70409a294491272146f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49860b278c47a70409a294491272146f, type: 3}
@@ -12114,6 +12118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building2
       objectReference: {fileID: 0}
+    - target: {fileID: 2109566797102981824, guid: 481860851d930e4429c7803a19cb6a7c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 481860851d930e4429c7803a19cb6a7c, type: 3}
 --- !u!1001 &4598726494201930713
@@ -12898,6 +12906,10 @@ PrefabInstance:
     - target: {fileID: 8911713679566606579, guid: 655fe453eed7a2041a46722617fc671f, type: 3}
       propertyPath: m_Name
       value: Watertower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911713679566606579, guid: 655fe453eed7a2041a46722617fc671f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 655fe453eed7a2041a46722617fc671f, type: 3}

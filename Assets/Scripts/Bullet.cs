@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     public float damage;
 
     public float speed;
+    Vector3 velocity;
+    public float gravity = -9.81f; //note this only affects the piece while the controller is enabled
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,8 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //gravity
+        velocity.y += 1;
     }
 
     void OnCollisionEnter(Collision collision)

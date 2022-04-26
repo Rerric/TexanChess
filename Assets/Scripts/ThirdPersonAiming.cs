@@ -90,10 +90,11 @@ public class ThirdPersonAiming : MonoBehaviour
 
     void Fire()
     {
-        if (pieceScript.hasFired == false)
-        {
-            Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
-            pieceScript.hasFired = true;
-        }
+        Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
+        //if (pieceScript.hasFired == false)
+        //{
+            //Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
+            //pieceScript.hasFired = true;
+        //}
     }
 }
