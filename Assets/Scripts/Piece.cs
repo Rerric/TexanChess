@@ -47,7 +47,7 @@ public class Piece : MonoBehaviour
     void Start()
     {
         set = false;
-
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         gameManager = GameObject.Find("GameManager");
         gmScript = gameManager.GetComponent<GameManager>();
         moveScript = GetComponent<ThirdPersonMovement>();
@@ -119,6 +119,7 @@ public class Piece : MonoBehaviour
 
     void EnableScripts()
     {
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         moveScript.enabled = true;
         aimScript.enabled = true;
         controller.enabled = true;
@@ -147,7 +148,7 @@ public class Piece : MonoBehaviour
         currentWeapon += dir;
         if (currentWeapon >= weapons.Length) currentWeapon = 0;
         if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
-	audioScript.PlaySoundPyramind(cycleSound, gameObject);
+	    audioScript.PlaySoundPyramind(cycleSound, gameObject);
     }
 
     void UpdateWeapon()
@@ -178,6 +179,11 @@ public class Piece : MonoBehaviour
         var scaleX = (distanceMoved / movementMax) * 2.73f;
 
         gmScript.movementBarJuice.transform.localScale = new Vector3(scaleX, 1.8f, 1);
+    }
+
+    public void ImHit()
+    {
+        rigidbody.constraints = RigidbodyConstraints.None;
     }
 
     public void Death()

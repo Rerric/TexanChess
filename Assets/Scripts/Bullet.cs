@@ -28,7 +28,8 @@ public class Bullet : MonoBehaviour
         {
             var hit = collision.gameObject.GetComponent<Piece>();
             hit.health -= damage;
-            Destroy(gameObject);
+            hit.ImHit();
+            Destroy(gameObject, 2.0f);
         }
         else
         {
