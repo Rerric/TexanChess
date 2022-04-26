@@ -134,7 +134,7 @@ MonoBehaviour:
   bounces: 2
   lifetime: 5
   hitSounds:
-  - {fileID: 8300000, guid: 78e611a27694ddf4f91348e1c32c344e, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 188fcdaa09f5de440ac7f1e2a67130b3, type: 3}
 --- !u!1001 &7745022457359680827
 PrefabInstance:

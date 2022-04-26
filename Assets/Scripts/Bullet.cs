@@ -73,7 +73,7 @@ public class Bullet : MonoBehaviour
 
         rb.velocity = direction * speed;
 
-        gravityOffset += 0.2f;
+        gravityOffset += 0.1f;
         
     }
 
