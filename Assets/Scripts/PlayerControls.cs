@@ -116,6 +116,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a743fdd-9620-4505-bd20-135ef10d219f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -393,6 +402,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""CycleRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a98e9982-e296-4efd-a861-ffe36ea170ed"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d5f4e14-aeb4-4e61-938e-97e9d1d30d08"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -411,6 +442,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_CycleLeft = m_Gameplay.FindAction("CycleLeft", throwIfNotFound: true);
         m_Gameplay_CycleRight = m_Gameplay.FindAction("CycleRight", throwIfNotFound: true);
+        m_Gameplay_Toggle = m_Gameplay.FindAction("Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -480,6 +512,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_CycleLeft;
     private readonly InputAction m_Gameplay_CycleRight;
+    private readonly InputAction m_Gameplay_Toggle;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -494,6 +527,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @CycleLeft => m_Wrapper.m_Gameplay_CycleLeft;
         public InputAction @CycleRight => m_Wrapper.m_Gameplay_CycleRight;
+        public InputAction @Toggle => m_Wrapper.m_Gameplay_Toggle;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -533,6 +567,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CycleRight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleRight;
                 @CycleRight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleRight;
                 @CycleRight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCycleRight;
+                @Toggle.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggle;
+                @Toggle.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggle;
+                @Toggle.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggle;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -567,6 +604,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CycleRight.started += instance.OnCycleRight;
                 @CycleRight.performed += instance.OnCycleRight;
                 @CycleRight.canceled += instance.OnCycleRight;
+                @Toggle.started += instance.OnToggle;
+                @Toggle.performed += instance.OnToggle;
+                @Toggle.canceled += instance.OnToggle;
             }
         }
     }
@@ -583,5 +623,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnCycleLeft(InputAction.CallbackContext context);
         void OnCycleRight(InputAction.CallbackContext context);
+        void OnToggle(InputAction.CallbackContext context);
     }
 }

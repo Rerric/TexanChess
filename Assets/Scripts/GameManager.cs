@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     public Canvas defaultCanvas;
     public Canvas aimCanvas;
+    public GameObject controlsText;
     public Image movementBarJuice;
     public Image teamFlag;
     public Sprite[] sprites;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         controls.Gameplay.EndTurn.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
+        controls.Gameplay.Toggle.performed += ctx => ToggleControls();
         controls.Gameplay.Quit.performed += ctx => Application.Quit();
 
         teams = Players;
@@ -257,5 +259,11 @@ public class GameManager : MonoBehaviour
     {
         followingProjectile = true;
         projectileToFollow = obj;
+    }
+
+    void ToggleControls()
+    {
+        if (controlsText.active == true) controlsText.SetActive(false);
+        else controlsText.SetActive(true);
     }
 }
