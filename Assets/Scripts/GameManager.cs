@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public Canvas defaultCanvas;
     public Canvas aimCanvas;
     public GameObject controlsText;
+    public GameObject winner1;
+    public GameObject winner2;
     public Image movementBarJuice;
     public Image teamFlag;
     public Sprite[] sprites;
@@ -76,8 +78,8 @@ public class GameManager : MonoBehaviour
     {
         UpdateCamera();
         UpdateUI();
-        if (pieces1.Count == 0) Debug.Log("Team 2 Wins!");
-        if (pieces2.Count == 0) Debug.Log("Team 1 Wins!");
+        if (pieces1.Count == 0) winner2.SetActive(true);
+        if (pieces2.Count == 0) winner1.SetActive(true);
     }
 
     void GameStart()
