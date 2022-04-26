@@ -5,12 +5,16 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+    private GameManager gmScript;
     public CinemachineVirtualCamera vcam;
 
     public Cinemachine.AxisState xAxis;
     public Cinemachine.AxisState yAxis;
 
     public Transform cameraLookAt;
+    public Transform target;
+
+    public float speed;
 
     private Cinemachine.CinemachineInputProvider inputAxisProvider;
 
@@ -22,6 +26,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         vcam = gameObject.GetComponent <CinemachineVirtualCamera>();
 
         inputAxisProvider = GetComponent<Cinemachine.CinemachineInputProvider>();
@@ -40,11 +45,21 @@ public class CameraController : MonoBehaviour
 
         cameraLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
 
+        if (target != null)
+        {
+            cameraLookAt.transform.position = Vector3.Lerp(cameraLookAt.transform.position, target.position, speed * Time.deltaTime);
+        }
+
         if (isAiming)
         {
             animator.SetBool(isAimingParam, false);
+
         }
-        else animator.SetBool(isAimingParam, true);
+        else
+        {
+            animator.SetBool(isAimingParam, true);
+            
+        }
     }
 
 }

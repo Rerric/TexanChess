@@ -128,10 +128,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3398006138496792552}
   damage: 25
-  speed: 20
+  speed: 10
   gravity: -9.81
   gravityOffset: 0.05
   bounces: 2
+  lifetime: 5
   hitSounds:
   - {fileID: 8300000, guid: 78e611a27694ddf4f91348e1c32c344e, type: 3}
   - {fileID: 8300000, guid: 188fcdaa09f5de440ac7f1e2a67130b3, type: 3}

@@ -15,6 +15,9 @@ public class Bullet : MonoBehaviour
     public float gravityOffset;
 
     public int bounces;
+    public float lifetime; //how long this projectile can exist before expiring
+
+    private GameManager gmScript;
 
     private AudioManager audioScript;
     public AudioClip[] hitSounds;
@@ -22,9 +25,14 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+
+        gmScript.FollowMe(this.transform);
+
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
@@ -51,7 +59,6 @@ public class Bullet : MonoBehaviour
             var hit = collision.gameObject.GetComponent<Piece>();
             hit.health -= damage;
             hit.ImHit();
-            Destroy(gameObject, 2.0f);
         }
         else
         {
@@ -67,8 +74,19 @@ public class Bullet : MonoBehaviour
         rb.velocity = direction * speed;
 
         gravityOffset += 0.2f;
-
-        Destroy(gameObject, 10f);
         
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.layer == 9) //killbox
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        gmScript.GoNext();
     }
 }

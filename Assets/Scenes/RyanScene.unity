@@ -843,6 +843,8 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
   cameraLookAt: {fileID: 1312887661}
+  target: {fileID: 0}
+  speed: 20
   isAiming: 0
 --- !u!1 &652792822
 GameObject:
@@ -1364,7 +1366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.2, y: 0.2, z: 0.2}
+  Damping: {x: 0, y: 0, z: 0}
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
@@ -2180,6 +2182,7 @@ MonoBehaviour:
   t2Count: 0
   cameraLookAt: {fileID: 1312887660}
   pieceToFollow: {fileID: 0}
+  followingProjectile: 0
   cameraScript: {fileID: 0}
   spawnPoint1: {fileID: 142507252}
   spawnPoint2: {fileID: 338617037}

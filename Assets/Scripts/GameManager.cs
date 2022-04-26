@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject cameraLookAt;
     public Transform pieceToFollow; //which piece the camera is currently following
+    private Transform projectileToFollow; 
+    public bool followingProjectile; //if the game is currently following a projectile
 
     //Important Scripts & Objects to communicate with
     public CameraController cameraScript;
@@ -160,11 +162,21 @@ public class GameManager : MonoBehaviour
     {
 
         //tell the camera what object (Transform) to follow
-        if (pieceToFollow != null) cameraLookAt.transform.position = pieceToFollow.position;
+        if (pieceToFollow != null && followingProjectile == false) cameraScript.target = pieceToFollow;
+
+        if (projectileToFollow != null && followingProjectile == true) cameraScript.target = projectileToFollow;
+
+        if (pieceToFollow == null && projectileToFollow == null) cameraScript.target = null;
     }
 
     void UpdateUI()
     {
+        if (followingProjectile)
+        {
+            defaultCanvas.enabled = false;
+            aimCanvas.enabled = false;
+        }
+
         if (turn == 1) teamFlag.sprite = sprites[0];
         if (turn == 2) teamFlag.sprite = sprites[1];
     }
@@ -188,6 +200,19 @@ public class GameManager : MonoBehaviour
             t2Count += 1;
             if (t2Count > pieces2.Count) t2Count = 1;
         }
+    }
+
+    public void GoNext()
+    {
+        StartCoroutine(Next(3f));
+    }
+
+    public IEnumerator Next(float seconds) //tells the game to automatically go to the next turn 
+    {
+        yield return new WaitForSeconds(seconds);
+        if (followingProjectile) followingProjectile = false;
+        NextTurn();
+        Debug.Log("Next!");
     }
 
     public void UpdatePieceIDs(int team, int id)
@@ -226,5 +251,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void FollowMe(Transform obj)
+    {
+        followingProjectile = true;
+        projectileToFollow = obj;
     }
 }

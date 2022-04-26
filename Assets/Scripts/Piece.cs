@@ -74,7 +74,7 @@ public class Piece : MonoBehaviour
         }
         else myTurn = false;
 
-        if (myTurn == true)
+        if (myTurn == true && gmScript.followingProjectile == false)
         {
             gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
             //while it's myTurn : control me and ignore natural physics
@@ -117,7 +117,7 @@ public class Piece : MonoBehaviour
 
     }
 
-    void EnableScripts()
+    public void EnableScripts()
     {
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         moveScript.enabled = true;
@@ -127,7 +127,7 @@ public class Piece : MonoBehaviour
         rigidbody.isKinematic = true;
     }
 
-    void DisableScripts()
+    public void DisableScripts()
     {
         moveScript.enabled = false;
         aimScript.enabled = false;
