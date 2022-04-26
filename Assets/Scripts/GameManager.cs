@@ -198,6 +198,7 @@ public class GameManager : MonoBehaviour
             {
                 if (pieces1[i].GetComponent<Piece>().pieceID > id)
                 {
+                    if (t1Count != 1) t1Count -= 1;
                     pieces1[i].GetComponent<Piece>().pieceID -= 1;
                 }
             }
@@ -209,6 +210,7 @@ public class GameManager : MonoBehaviour
             {
                 if (pieces2[i].GetComponent<Piece>().pieceID > id)
                 {
+                    if (t2Count != 1) t2Count -= 1;
                     pieces2[i].GetComponent<Piece>().pieceID -= 1;
                 }
             }
