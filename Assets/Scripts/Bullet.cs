@@ -71,9 +71,9 @@ public class Bullet : MonoBehaviour
         var _speed = movementDirection.magnitude;
         var direction = Vector3.Reflect(movementDirection.normalized, collision.contacts[0].normal);
 
-        rb.velocity = direction * speed;
+        rb.velocity = direction * speed * 3.0f;
 
-        gravityOffset += 0.1f;
+        gravityOffset += 0.25f;
         
     }
 
