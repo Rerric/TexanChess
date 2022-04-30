@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JustinScene.unity
-    guid: 8095b8ed6b94f204d8aeeabbacaec4cc
+    path: Assets/Scenes/Cliff_Town.unity
+    guid: 16d04239bf3c3e141ab87a859b2a56df
   m_configObjects: {}
