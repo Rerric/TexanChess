@@ -532,6 +532,7 @@ MonoBehaviour:
   firePoint: {fileID: 1762687505077653170}
   projectiles:
   - {fileID: 7734315567904623264, guid: f0e10989ea1f71f41ab130d642978ec9, type: 3}
+  - {fileID: 5621444596682624864, guid: 1f140d1a9fa0a014ab0f1e2a73c95559, type: 3}
 --- !u!54 &6408029597625824334
 Rigidbody:
   m_ObjectHideFlags: 0

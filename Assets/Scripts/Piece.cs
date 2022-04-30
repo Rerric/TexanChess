@@ -21,7 +21,7 @@ public class Piece : MonoBehaviour
     private bool set; //checks if the startingPos is set for this turn
 
     public GameObject[] weapons = new GameObject[6]; //weapons / powerups this piece has in its inventory
-    private int currentWeapon;
+    public int currentWeapon;
 
     public bool hasFired; //checks if this piece has used an attack this turn
 

@@ -95,7 +95,8 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (pieceScript.hasFired == false)
         {
-            Instantiate(projectiles[0], firePoint.position, firePoint.rotation);
+            var projectile = pieceScript.currentWeapon;
+            Instantiate(projectiles[projectile], firePoint.position, firePoint.rotation);
             pieceScript.hasFired = true;
         }
     }
