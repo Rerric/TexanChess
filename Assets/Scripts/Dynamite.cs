@@ -16,7 +16,6 @@ public class Dynamite : MonoBehaviour
     public float speed;
     
     public float gravity = -9.81f; //note this only affects the piece while the controller is enabled
-    public float gravityOffset;
 
     public float lifetime; //how long this projectile can exist before expiring
 
@@ -33,6 +32,7 @@ public class Dynamite : MonoBehaviour
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+        rb.AddTorque(transform.right * 1.5f, ForceMode.Impulse);
 
         StartCoroutine(Fuse(lifetime - 2f));
 
@@ -44,7 +44,7 @@ public class Dynamite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(Physics.gravity * rb.mass * gravityOffset);
+        
     }
 
     void Explode()

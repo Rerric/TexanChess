@@ -20,6 +20,9 @@ public class ThirdPersonAiming : MonoBehaviour
     private float turnVelocity;
 
     public bool isAiming;
+    public bool isCharging;
+    public float power; //variable that represents throwing power
+    public float powerMax; //maximum power the piece can throw something at
 
     public GameObject arms;
 
@@ -33,6 +36,7 @@ public class ThirdPersonAiming : MonoBehaviour
         controls.Gameplay.TakeAim.performed += ctx => TakeAim();
         controls.Gameplay.TakeAim.canceled += ctx => StopAim();
         controls.Gameplay.Fire.performed += ctx => Fire();
+        controls.Gameplay.Fire.canceled += ctx => Release();
         controls.Gameplay.CycleRight.performed += ctx => pieceScript.CycleWeapons(1);
         controls.Gameplay.CycleLeft.performed += ctx => pieceScript.CycleWeapons(-1);
 
@@ -82,22 +86,61 @@ public class ThirdPersonAiming : MonoBehaviour
 
     void StopAim()
     {
-        isAiming = false;
-        camScript.isAiming = false;
-        moveScript.OnEnable();
-        
+        if (isCharging == false)
+        {
+            isAiming = false;
+            camScript.isAiming = false;
+            moveScript.OnEnable();
+        }
     }
 
     void Fire()
     {
-        if (isAiming) StopAim();
-        pieceScript.DisableScripts();
+        var weapon = pieceScript.weapons[pieceScript.currentWeapon];
 
-        if (pieceScript.hasFired == false)
+        if (weapon.name == "Revolver")
         {
-            var projectile = pieceScript.currentWeapon;
-            Instantiate(projectiles[projectile], firePoint.position, firePoint.rotation);
-            pieceScript.hasFired = true;
+            if (isAiming) StopAim();
+            pieceScript.DisableScripts();
+
+            if (pieceScript.hasFired == false)
+            {
+                var projectile = pieceScript.currentWeapon;
+                Instantiate(projectiles[projectile], firePoint.position, firePoint.rotation);
+                pieceScript.hasFired = true;
+            }
         }
+
+        if (weapon.name == "Dynamite")
+        {
+            isCharging = true;
+            InvokeRepeating("Charge", 0.0f, 0.05f);
+        }
+    }
+
+    void Charge()
+    {
+        power += 1;
+        if (power > powerMax) power = powerMax;
+    }
+
+    void Release()
+    {
+        if (isCharging)
+        {
+            isCharging = false;
+            if (isAiming) StopAim();
+            pieceScript.DisableScripts();
+
+            if (pieceScript.hasFired == false)
+            {
+                var projectile = pieceScript.currentWeapon;
+                var dynamite = Instantiate(projectiles[projectile], firePoint.position, firePoint.rotation);
+                dynamite.GetComponent<Dynamite>().speed = power;
+                pieceScript.hasFired = true;
+                CancelInvoke();
+            }
+        }
+        
     }
 }

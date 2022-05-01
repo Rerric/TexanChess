@@ -86,7 +86,15 @@ public class Piece : MonoBehaviour
                 startingPos = new Vector3(pieceTransform.position.x, 0f, pieceTransform.position.z);
                 set = true;
                 hasFired = false;
+                aimScript.power = 0;
             }
+
+            if (aimScript.isCharging)
+            {
+                gmScript.chargeMeter.SetActive(true);
+                UpdateChargeMeter();
+            }
+            else gmScript.chargeMeter.SetActive(false);
 
             CheckDistance(); //calculate distance moved this turn
             UpdateMovementMeter();
@@ -145,10 +153,13 @@ public class Piece : MonoBehaviour
 
     public void CycleWeapons(int dir)
     {
-        currentWeapon += dir;
-        if (currentWeapon >= weapons.Length) currentWeapon = 0;
-        if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
-	    audioScript.PlaySoundPyramind(cycleSound, gameObject);
+        if (aimScript.isCharging == false)
+        {
+            currentWeapon += dir;
+            if (currentWeapon >= weapons.Length) currentWeapon = 0;
+            if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
+            audioScript.PlaySoundPyramind(cycleSound, gameObject);
+        }
     }
 
     void UpdateWeapon()
@@ -161,6 +172,13 @@ public class Piece : MonoBehaviour
             }
             else weapons[i].SetActive(false);
         }
+    }
+
+    void UpdateChargeMeter()
+    {
+        var scaleY = (aimScript.power / aimScript.powerMax) * 2.73f;
+
+        gmScript.chargeMeterJuice.transform.localScale = new Vector3(scaleY, 1.8f, 1);
     }
 
     void UpdateHealth()

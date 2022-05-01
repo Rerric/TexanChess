@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     public GameObject winner1;
     public GameObject winner2;
     public Image movementBarJuice;
+    public GameObject chargeMeter;
+    public Image chargeMeterJuice;
     public Image teamFlag;
     public Sprite[] sprites;
 
