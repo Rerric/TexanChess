@@ -23,6 +23,8 @@ public class ThirdPersonAiming : MonoBehaviour
     public bool isCharging; //checks if player is currently charging a throw
     public float power; //variable that represents throwing power
     public float powerMax; //maximum power the piece can throw
+    public float meleeDamage; //how much damage this piece does with melee attacks
+    public float meleeStrength; //how hard this piece can hit things with its melee weapon (if any)
 
     public GameObject arms;
     public MeleeAnimator meleeAnim;
@@ -120,6 +122,9 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (weapon.name == "Shovel")
         {
+            if (isAiming) StopAim();
+            pieceScript.DisableScripts(); 
+
             if (pieceScript.hasFired == false)
             {
                 pieceScript.hasFired = true;
