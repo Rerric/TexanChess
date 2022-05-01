@@ -25,6 +25,7 @@ public class ThirdPersonAiming : MonoBehaviour
     public float powerMax; //maximum power the piece can throw
 
     public GameObject arms;
+    public MeleeAnimator meleeAnim;
 
     public Transform firePoint; //place where the bullet / projectile is created
     public GameObject[] projectiles;
@@ -119,7 +120,11 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (weapon.name == "Shovel")
         {
-            //melee attack - needs animation
+            if (pieceScript.hasFired == false)
+            {
+                pieceScript.hasFired = true;
+                meleeAnim.Swing();
+            }
         }
     }
 
