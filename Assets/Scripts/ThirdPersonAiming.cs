@@ -20,9 +20,9 @@ public class ThirdPersonAiming : MonoBehaviour
     private float turnVelocity;
 
     public bool isAiming;
-    public bool isCharging;
+    public bool isCharging; //checks if player is currently charging a throw
     public float power; //variable that represents throwing power
-    public float powerMax; //maximum power the piece can throw something at
+    public float powerMax; //maximum power the piece can throw
 
     public GameObject arms;
 
@@ -115,6 +115,11 @@ public class ThirdPersonAiming : MonoBehaviour
         {
             isCharging = true;
             InvokeRepeating("Charge", 0.0f, 0.05f);
+        }
+
+        if (weapon.name == "Shovel")
+        {
+            //melee attack - needs animation
         }
     }
 
