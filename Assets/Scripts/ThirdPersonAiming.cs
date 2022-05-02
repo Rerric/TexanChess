@@ -12,6 +12,7 @@ public class ThirdPersonAiming : MonoBehaviour
     public GameObject mainCam;
     public Transform cam;
 
+    public GameManager gmScript;
     private ThirdPersonMovement moveScript;
     private CameraController camScript;
     private Piece pieceScript;
@@ -23,6 +24,8 @@ public class ThirdPersonAiming : MonoBehaviour
     public bool isCharging; //checks if player is currently charging a throw
     public float power; //variable that represents throwing power
     public float powerMax; //maximum power the piece can throw
+    public float meleeDamage; //how much damage this piece does with melee attacks
+    public float meleeStrength; //how hard this piece can hit things with its melee weapon (if any)
 
     public GameObject arms;
     public MeleeAnimator meleeAnim;
@@ -42,6 +45,7 @@ public class ThirdPersonAiming : MonoBehaviour
         controls.Gameplay.CycleLeft.performed += ctx => pieceScript.CycleWeapons(-1);
 
         mainCam = GameObject.Find("Main Camera");
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         camScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
         cam = mainCam.GetComponent<Transform>();
 
@@ -120,6 +124,9 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (weapon.name == "Shovel")
         {
+            if (isAiming) StopAim();
+            gmScript.GoNext();
+            
             if (pieceScript.hasFired == false)
             {
                 pieceScript.hasFired = true;

@@ -189,22 +189,25 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-        turn += 1;
-        if (turn > teams)
+        if (followingProjectile == false)
         {
-            turn = 1;
-        }
+            turn += 1;
+            if (turn > teams)
+            {
+                turn = 1;
+            }
 
-        if (turn == 1)
-        {
-            t1Count += 1;
-            if (t1Count > pieces1.Count) t1Count = 1;
-        }
+            if (turn == 1)
+            {
+                t1Count += 1;
+                if (t1Count > pieces1.Count) t1Count = 1;
+            }
 
-        if (turn == 2)
-        { 
-            t2Count += 1;
-            if (t2Count > pieces2.Count) t2Count = 1;
+            if (turn == 2)
+            {
+                t2Count += 1;
+                if (t2Count > pieces2.Count) t2Count = 1;
+            }
         }
     }
 
