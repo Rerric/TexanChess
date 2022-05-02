@@ -71,6 +71,7 @@ public class MeleeAnimator : MonoBehaviour
     {
         _hitThisTurn.Clear();
         isSwinging = false;
+        pieceScript.DisableScripts();
     }
 
     void CheckHits()
@@ -94,10 +95,15 @@ public class MeleeAnimator : MonoBehaviour
                     piece.ImHit();
                 }
 
+                if (hit.gameObject.CompareTag("Prop")) //hit a prop
+                {
+                    audioScript.PlaySoundPyramind(Sounds[0], hit.gameObject);
+                }
+
                 Rigidbody _rb = hit.GetComponent<Rigidbody>();
                 if (_rb != null)
                 {
-                    _rb.AddExplosionForce(aimScript.meleeStrength, piece.transform.position, 3f, 1f);
+                    _rb.AddExplosionForce(aimScript.meleeStrength, piece.transform.position, 2.5f, 0.5f);
                 }
             }
             _hitThisTurn.Add(hit);

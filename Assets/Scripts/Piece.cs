@@ -79,7 +79,7 @@ public class Piece : MonoBehaviour
             gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
             //while it's myTurn : control me and ignore natural physics
             gameObject.layer = 7;
-            EnableScripts();
+            if (hasFired == false) EnableScripts();
 
             if (set == false)
             {
