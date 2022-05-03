@@ -24,6 +24,7 @@ public class Piece : MonoBehaviour
     public int currentWeapon;
 
     public bool hasFired; //checks if this piece has used an attack this turn
+    private bool isJacked; //checks if this piece is jacked af
 
     private ThirdPersonMovement moveScript;
     private ThirdPersonAiming aimScript;
@@ -59,6 +60,8 @@ public class Piece : MonoBehaviour
         health = healthMax;
 
         body.GetComponent<Renderer>().material = newMaterial[team];
+
+        isJacked = false;
 
         currentWeapon = 0;
     }
@@ -219,6 +222,17 @@ public class Piece : MonoBehaviour
     public void ImHit()
     {
         rigidbody.constraints = RigidbodyConstraints.None;
+    }
+
+    public void JackedUp(float percentage)
+    {
+        if (isJacked == false)
+        {
+            aimScript.meleeStrength *= percentage;
+            aimScript.meleeDamage *= percentage;
+            aimScript.powerMax *= percentage;
+            isJacked = true;
+        }
     }
 
     public void Death()

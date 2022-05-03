@@ -7,6 +7,7 @@ public class Powerup : MonoBehaviour
     public string Type; //what type of powerup this is
 
     public float Health; //if its a medkit, how much hp this restores to the piece that picks it up
+    public float jackedUpPercentage; //if its whiskey, how much it will empower the stats of the piece that picks it up
 
     private AudioManager audioScript;
     public AudioClip[] Sounds;
@@ -46,7 +47,8 @@ public class Powerup : MonoBehaviour
 
             if (Type == "Whiskey")
             {
-
+                piece.JackedUp(jackedUpPercentage);
+                audioScript.PlaySoundPyramind(Sounds[0], other);
             }
            
             Destroy(gameObject);
