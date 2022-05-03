@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6119516982007706031}
   - component: {fileID: 2991729887225867240}
   - component: {fileID: 4951489333871210927}
+  - component: {fileID: 1944870152519541472}
   m_Layer: 3
   m_Name: Crate
   m_TagString: Prop
@@ -112,3 +113,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &1944870152519541472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759004643491680378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d75db338af6bcb49b0cbb1ee3096d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  collider: {fileID: 0}
+  velocities:
+  - 4
+  - 6
+  - 10
+  damageValues:
+  - 5
+  - 10
+  - 20
+  particle: {fileID: 3882944549511318051, guid: 0ae9cfd6811317a47895b21d86c1e6f3, type: 3}
