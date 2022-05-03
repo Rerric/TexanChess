@@ -103,15 +103,18 @@ public class Piece : MonoBehaviour
             UpdateActionWheel();
             if (distanceMoved >= movementMax) moveScript.OnDisable();
 
-            if (aimScript.isAiming)
+            if (gmScript.isOverhead == false)
             {
-                gmScript.aimCanvas.enabled = true;
-                gmScript.defaultCanvas.enabled = false;
-            }
-            else
-            {
-                gmScript.aimCanvas.enabled = false;
-                gmScript.defaultCanvas.enabled = true;
+                if (aimScript.isAiming)
+                {
+                    gmScript.aimCanvas.enabled = true;
+                    gmScript.defaultCanvas.enabled = false;
+                }
+                else
+                {
+                    gmScript.aimCanvas.enabled = false;
+                    gmScript.defaultCanvas.enabled = true;
+                }
             }
         }
         else 

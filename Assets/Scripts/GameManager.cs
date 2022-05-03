@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -31,7 +32,11 @@ public class GameManager : MonoBehaviour
     public bool followingProjectile; //if the game is currently following a projectile
 
     //Important Scripts & Objects to communicate with
+    public Camera mainCam;
+    private CinemachineVirtualCamera overheadCam;
     public CameraController cameraScript;
+
+    public bool isOverhead; //whether the view of the game is currently in the overhead view
 
     public GameObject spawnPoint1; //Team 1 Spawn
     public GameObject spawnPoint2; //Team 2 Spawn
@@ -62,6 +67,7 @@ public class GameManager : MonoBehaviour
 
         controls.Gameplay.EndTurn.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
         controls.Gameplay.Toggle.performed += ctx => ToggleControls();
+        controls.Gameplay.Overhead.performed += ctx => ToggleOverhead(); //toggles overhead / bird's eye view camera
         controls.Gameplay.Quit.performed += ctx => Application.Quit();
 
         teams = Players;
@@ -70,6 +76,9 @@ public class GameManager : MonoBehaviour
         t2Count = 1;
 
         cameraScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
+        overheadCam = GameObject.Find("Overhead Camera").GetComponent<CinemachineVirtualCamera>();
+
+        isOverhead = false;
 
         FindSpawnPoints();
         GameStart();
@@ -177,7 +186,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (followingProjectile)
+        if (followingProjectile || overheadCam.Priority > 10)
         {
             defaultCanvas.enabled = false;
             aimCanvas.enabled = false;
@@ -272,5 +281,21 @@ public class GameManager : MonoBehaviour
     {
         if (controlsText.active == true) controlsText.SetActive(false);
         else controlsText.SetActive(true);
+    }
+
+    void ToggleOverhead()
+    {
+        if (overheadCam.Priority < 10)
+        {
+            isOverhead = true;
+            mainCam.orthographic = true;
+            overheadCam.Priority += 10;
+        }
+        else
+        {
+            isOverhead = false;
+            mainCam.orthographic = false;
+            overheadCam.Priority -= 10;
+        }
     }
 }

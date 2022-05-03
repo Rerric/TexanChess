@@ -125,6 +125,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Overhead"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f6614b5-eb10-4bb1-a53a-35c6d900b1a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -424,6 +433,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ac0c4c5-0282-4e9a-947a-dfc6bc6a129e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Overhead"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""641d5e01-b479-48b4-b055-f5fb5f75254a"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Overhead"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -443,6 +474,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_CycleLeft = m_Gameplay.FindAction("CycleLeft", throwIfNotFound: true);
         m_Gameplay_CycleRight = m_Gameplay.FindAction("CycleRight", throwIfNotFound: true);
         m_Gameplay_Toggle = m_Gameplay.FindAction("Toggle", throwIfNotFound: true);
+        m_Gameplay_Overhead = m_Gameplay.FindAction("Overhead", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -513,6 +545,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_CycleLeft;
     private readonly InputAction m_Gameplay_CycleRight;
     private readonly InputAction m_Gameplay_Toggle;
+    private readonly InputAction m_Gameplay_Overhead;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -528,6 +561,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @CycleLeft => m_Wrapper.m_Gameplay_CycleLeft;
         public InputAction @CycleRight => m_Wrapper.m_Gameplay_CycleRight;
         public InputAction @Toggle => m_Wrapper.m_Gameplay_Toggle;
+        public InputAction @Overhead => m_Wrapper.m_Gameplay_Overhead;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -570,6 +604,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Toggle.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggle;
                 @Toggle.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggle;
                 @Toggle.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggle;
+                @Overhead.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOverhead;
+                @Overhead.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOverhead;
+                @Overhead.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOverhead;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -607,6 +644,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Toggle.started += instance.OnToggle;
                 @Toggle.performed += instance.OnToggle;
                 @Toggle.canceled += instance.OnToggle;
+                @Overhead.started += instance.OnOverhead;
+                @Overhead.performed += instance.OnOverhead;
+                @Overhead.canceled += instance.OnOverhead;
             }
         }
     }
@@ -624,5 +664,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnCycleLeft(InputAction.CallbackContext context);
         void OnCycleRight(InputAction.CallbackContext context);
         void OnToggle(InputAction.CallbackContext context);
+        void OnOverhead(InputAction.CallbackContext context);
     }
 }
