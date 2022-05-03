@@ -61,6 +61,7 @@ MonoBehaviour:
   Sounds:
   - {fileID: 8300000, guid: ff767d50af20d1444bf1ede426a9b55a, type: 3}
   - {fileID: 8300000, guid: 6c4c4901bbfe16948af36b292ecfb2e1, type: 3}
+  particle: {fileID: 1433722779812105533, guid: 03d5d8831158ee84287a22a14840a5f1, type: 3}
 --- !u!136 &4552398776274131320
 CapsuleCollider:
   m_ObjectHideFlags: 0

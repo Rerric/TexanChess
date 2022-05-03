@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
     private AudioManager audioScript;
     public AudioClip[] hitSounds;
 
+    public GameObject particle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer == 6) //if it's a non-player piece
         {
             audioScript.PlaySoundPyramind(hitSounds[1], gameObject);
+            var hitParticle = Instantiate(particle, transform.position, Quaternion.identity);
+            hitParticle.transform.localScale *= 0.5f;
             var hit = collision.gameObject.GetComponent<Piece>();
             hit.health -= damage;
             hit.ImHit();

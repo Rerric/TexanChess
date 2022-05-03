@@ -136,6 +136,7 @@ MonoBehaviour:
   hitSounds:
   - {fileID: 8300000, guid: 78e611a27694ddf4f91348e1c32c344e, type: 3}
   - {fileID: 8300000, guid: 188fcdaa09f5de440ac7f1e2a67130b3, type: 3}
+  particle: {fileID: 3882944549511318051, guid: 0ae9cfd6811317a47895b21d86c1e6f3, type: 3}
 --- !u!1001 &7745022457359680827
 PrefabInstance:
   m_ObjectHideFlags: 0

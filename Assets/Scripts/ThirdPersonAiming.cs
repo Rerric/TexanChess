@@ -33,6 +33,11 @@ public class ThirdPersonAiming : MonoBehaviour
     public Transform firePoint; //place where the bullet / projectile is created
     public GameObject[] projectiles;
 
+    private AudioManager audioScript;
+    public AudioClip[] sounds;
+
+    public GameObject particle; //gunshot particle
+
     void Awake()
     {
         controls = new PlayerControls();
@@ -47,6 +52,7 @@ public class ThirdPersonAiming : MonoBehaviour
         mainCam = GameObject.Find("Main Camera");
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         camScript = GameObject.Find("Third Person Camera").GetComponent<CameraController>();
+        audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         cam = mainCam.GetComponent<Transform>();
 
         moveScript = GetComponent<ThirdPersonMovement>();
@@ -110,9 +116,11 @@ public class ThirdPersonAiming : MonoBehaviour
 
             if (pieceScript.hasFired == false)
             {
+                audioScript.PlaySoundPyramind(sounds[0], firePoint.gameObject);
                 var projectile = pieceScript.currentWeapon;
                 Instantiate(projectiles[projectile], firePoint.position, firePoint.rotation);
                 pieceScript.hasFired = true;
+                var gunshotParticle = Instantiate(particle, firePoint.position, firePoint.rotation);
             }
         }
 

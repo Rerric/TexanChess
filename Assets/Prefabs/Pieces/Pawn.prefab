@@ -529,6 +529,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   mainCam: {fileID: 0}
   cam: {fileID: 0}
+  gmScript: {fileID: 0}
   turnSpeed: 0.1
   isAiming: 0
   isCharging: 0
@@ -542,6 +543,9 @@ MonoBehaviour:
   projectiles:
   - {fileID: 7734315567904623264, guid: f0e10989ea1f71f41ab130d642978ec9, type: 3}
   - {fileID: 5621444596682624864, guid: 1f140d1a9fa0a014ab0f1e2a73c95559, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: 188fcdaa09f5de440ac7f1e2a67130b3, type: 3}
+  particle: {fileID: 5411127849483494656, guid: a74fede57f328134397b45fcc30b0b9b, type: 3}
 --- !u!54 &6408029597625824334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -616,7 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491620735480518454, guid: a6d642530363a09428ee0139e8b77a8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2303764431728545164, guid: a6d642530363a09428ee0139e8b77a8f, type: 3}
       propertyPath: m_RootOrder
@@ -924,7 +928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3816093478621199370, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4593298199427868336, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
       propertyPath: m_RootOrder

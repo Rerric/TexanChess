@@ -25,6 +25,8 @@ public class Dynamite : MonoBehaviour
     public AudioSource source;
     public AudioClip[] Sounds;
 
+    public GameObject particle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,8 @@ public class Dynamite : MonoBehaviour
         source.enabled = false;
         body.SetActive(false);
         audioScript.PlaySoundPyramind(Sounds[1], gameObject);
+        var explosionPoint = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        var explosionParticle = Instantiate(particle, explosionPoint , Quaternion.identity);
 
         Collider[] others = Physics.OverlapSphere(transform.position, radius);
 
