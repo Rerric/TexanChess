@@ -192,6 +192,8 @@ public class Piece : MonoBehaviour
         var scaleX = (health / healthMax) * 0.09f;
         healthBarJuice.transform.localScale = new Vector3(scaleX, 0.08f, 1);
 
+        if (health > healthMax) health = healthMax;
+
         if (health <= 0)
         {
             Death();
@@ -239,6 +241,12 @@ public class Piece : MonoBehaviour
         if (collider.gameObject.layer == 9) //killbox
         {
             Death();
+        }
+
+        if (collider.gameObject.layer == 11) //powerup
+        {
+            var powerup = collider.gameObject.GetComponent<Powerup>();
+            powerup.Pickup(this.gameObject);
         }
     }
 }
