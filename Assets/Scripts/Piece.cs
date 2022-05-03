@@ -34,6 +34,7 @@ public class Piece : MonoBehaviour
     public GameObject gameManager;
     public GameManager gmScript;
     public GameObject body;
+    private UIManager uiScript;
 
     public Material[] newMaterial;
 
@@ -50,6 +51,7 @@ public class Piece : MonoBehaviour
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         gameManager = GameObject.Find("GameManager");
         gmScript = gameManager.GetComponent<GameManager>();
+        uiScript = gameManager.GetComponent<UIManager>();
         moveScript = GetComponent<ThirdPersonMovement>();
         aimScript = GetComponent<ThirdPersonAiming>();
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -98,6 +100,7 @@ public class Piece : MonoBehaviour
 
             CheckDistance(); //calculate distance moved this turn
             UpdateMovementMeter();
+            UpdateActionWheel();
             if (distanceMoved >= movementMax) moveScript.OnDisable();
 
             if (aimScript.isAiming)
@@ -197,6 +200,15 @@ public class Piece : MonoBehaviour
         var scaleX = (distanceMoved / movementMax) * 2.73f;
 
         gmScript.movementBarJuice.transform.localScale = new Vector3(scaleX, 1.8f, 1);
+    }
+
+    void UpdateActionWheel()
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            uiScript._weapons[i] = weapons[i];
+        }
+        uiScript.currentSlot = currentWeapon;
     }
 
     public void ImHit()

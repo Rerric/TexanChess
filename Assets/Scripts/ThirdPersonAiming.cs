@@ -46,8 +46,8 @@ public class ThirdPersonAiming : MonoBehaviour
         controls.Gameplay.TakeAim.canceled += ctx => StopAim();
         controls.Gameplay.Fire.performed += ctx => Fire();
         controls.Gameplay.Fire.canceled += ctx => Release();
-        controls.Gameplay.CycleRight.performed += ctx => pieceScript.CycleWeapons(1);
-        controls.Gameplay.CycleLeft.performed += ctx => pieceScript.CycleWeapons(-1);
+        controls.Gameplay.CycleRight.performed += ctx => pieceScript.CycleWeapons(-1);
+        controls.Gameplay.CycleLeft.performed += ctx => pieceScript.CycleWeapons(1);
 
         mainCam = GameObject.Find("Main Camera");
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
