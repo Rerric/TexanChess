@@ -990,6 +990,10 @@ PrefabInstance:
       propertyPath: piece
       value: 
       objectReference: {fileID: 7712056588359406962}
+    - target: {fileID: 7341900781149264745, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
+      propertyPath: particle
+      value: 
+      objectReference: {fileID: 3882944549511318051, guid: 0ae9cfd6811317a47895b21d86c1e6f3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
 --- !u!1 &8629278033988027752 stripped

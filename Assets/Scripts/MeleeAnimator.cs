@@ -20,6 +20,8 @@ public class MeleeAnimator : MonoBehaviour
     private AudioManager audioScript;
     public AudioClip[] Sounds;
 
+    public GameObject particle; //particle for hitting things
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,11 +95,15 @@ public class MeleeAnimator : MonoBehaviour
                     piece.health -= damage;
                     audioScript.PlaySoundPyramind(Sounds[0], hit.gameObject);
                     piece.ImHit();
+                    var hitParticle = Instantiate(particle, hit.gameObject.transform.position, hit.gameObject.transform.rotation);
+                    hitParticle.transform.localScale *= 0.5f;
                 }
 
                 if (hit.gameObject.CompareTag("Prop")) //hit a prop
                 {
                     audioScript.PlaySoundPyramind(Sounds[0], hit.gameObject);
+                    var hitParticle = Instantiate(particle, hit.gameObject.transform.position, hit.gameObject.transform.rotation);
+                    hitParticle.transform.localScale *= 0.5f;
                 }
 
                 Rigidbody _rb = hit.GetComponent<Rigidbody>();
