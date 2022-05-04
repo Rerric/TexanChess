@@ -9,6 +9,8 @@ public class Powerup : MonoBehaviour
     public float Health; //if its a medkit, how much hp this restores to the piece that picks it up
     public float jackedUpPercentage; //if its whiskey, how much it will empower the stats of the piece that picks it up
 
+    public float rotationSpeed;
+
     private AudioManager audioScript;
     public AudioClip[] Sounds;
 
@@ -22,6 +24,7 @@ public class Powerup : MonoBehaviour
     void Update()
     {
         Float();
+        transform.Rotate(0f, rotationSpeed, 0f);
     }
 
     void Float()

@@ -48,6 +48,7 @@ MonoBehaviour:
   Type: Whiskey
   Health: 40
   jackedUpPercentage: 2
+  rotationSpeed: 0.5
   Sounds:
   - {fileID: 8300000, guid: 407f0f4c0836f7b4381f21f272bfd985, type: 3}
 --- !u!65 &279476974885530162

@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     public int bounces;
     public float lifetime; //how long this projectile can exist before expiring
+    public float slideTime; //how long this is allowed to slide along the ground
 
     private GameManager gmScript;
 
@@ -79,6 +80,18 @@ public class Bullet : MonoBehaviour
 
         gravityOffset += 0.1f;
         
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 3) //if it's the ground
+        {
+            slideTime -= 1f;
+            if (slideTime <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider collider)
