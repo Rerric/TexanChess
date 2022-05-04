@@ -5111,7 +5111,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 6
@@ -8032,15 +8032,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0, y: 0, z: 0}
+  Damping: {x: 0.1, y: 0.1, z: 0.1}
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 10
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 8
-  IgnoreTag: Player
+    m_Bits: 0
+  IgnoreTag: 
   CameraRadius: 0.2
 --- !u!114 &999603831
 MonoBehaviour:
@@ -12426,8 +12426,8 @@ MonoBehaviour:
     Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 300
-    m_AccelTime: 0.02
-    m_DecelTime: 0.02
+    m_AccelTime: 0.01
+    m_DecelTime: 0.01
     m_InputAxisName: Gameplay/Aim
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -12444,13 +12444,13 @@ MonoBehaviour:
     Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 150
-    m_AccelTime: 0.02
-    m_DecelTime: 0.02
-    m_InputAxisName: 
+    m_AccelTime: 0.01
+    m_DecelTime: 0.01
+    m_InputAxisName: Gameplay/Aim
     m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -70
-    m_MaxValue: 70
+    m_InvertInput: 0
+    m_MinValue: -60
+    m_MaxValue: 60
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
