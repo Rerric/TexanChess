@@ -57,6 +57,7 @@ public class Dynamite : MonoBehaviour
         audioScript.PlaySoundPyramind(Sounds[1], gameObject);
         var explosionPoint = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         var explosionParticle = Instantiate(particle, explosionPoint , Quaternion.identity);
+        explosionParticle.transform.localScale *= 1.5f;
 
         Collider[] others = Physics.OverlapSphere(transform.position, radius);
 

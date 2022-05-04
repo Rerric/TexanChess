@@ -109,7 +109,7 @@ public class MeleeAnimator : MonoBehaviour
                 Rigidbody _rb = hit.GetComponent<Rigidbody>();
                 if (_rb != null)
                 {
-                    _rb.AddExplosionForce(aimScript.meleeStrength, piece.transform.position, 2.5f, 0.5f);
+                    _rb.AddExplosionForce(aimScript.meleeStrength, piece.transform.position, 2.5f, 0.75f);
                 }
             }
             _hitThisTurn.Add(hit);

@@ -3316,12 +3316,17 @@ MonoBehaviour:
   - {fileID: 174222317}
   - {fileID: 1372159362}
   - {fileID: 790551706}
+  reticle: {fileID: 1759966352}
   iconSprites:
   - {fileID: 21300000, guid: 9b874b7f2b4b8c941a2db0f9af0e999b, type: 3}
   - {fileID: 21300000, guid: 92716e1021b8d1846af866c1da8fa138, type: 3}
   - {fileID: 21300000, guid: ebdca35e01cf9a34d96154117d7f720b, type: 3}
   - {fileID: 21300000, guid: 4c6e20b48b49ed04a8d8ea34002ec4b0, type: 3}
   - {fileID: 0}
+  reticleSprites:
+  - {fileID: 21300000, guid: 502552c9492cf8d4199d5e7272d57dee, type: 3}
+  - {fileID: 21300000, guid: a43fe68f65093294ca4a5dbb701f1a96, type: 3}
+  - {fileID: 21300000, guid: fa065ca467df15f449c45c0a4ba73e95, type: 3}
   currentSlot: 0
 --- !u!114 &386842241
 MonoBehaviour:
@@ -5736,7 +5741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &708173655
 RectTransform:
   m_ObjectHideFlags: 0
