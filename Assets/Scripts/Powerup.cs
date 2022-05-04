@@ -14,22 +14,30 @@ public class Powerup : MonoBehaviour
     private AudioManager audioScript;
     public AudioClip[] Sounds;
 
+    private float direction = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        InvokeRepeating("Float", 0f, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Float();
+        transform.Translate(0f, direction * Time.deltaTime * 0.5f, 0f);
         transform.Rotate(0f, rotationSpeed, 0f);
     }
 
     void Float()
     {
-        //move up and down slowly
+        if (direction == 1)
+        {
+            direction = -1;
+        }
+        else direction = 1;
     }
 
     public void Pickup(GameObject other)
