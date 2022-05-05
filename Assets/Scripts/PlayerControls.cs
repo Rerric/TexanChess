@@ -64,6 +64,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Jetpack"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ec65507-1ef8-4d0c-852f-d33e218c1e44"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""TakeAim"",
                     ""type"": ""Button"",
                     ""id"": ""90fab6f4-e61d-4a14-b9c3-4e363106ca6f"",
@@ -455,6 +464,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Overhead"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34ef05ba-dbc4-46c6-a2ba-aa4a951771fa"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jetpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfba9d33-103c-4981-8d45-d21218e93f94"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jetpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -467,6 +498,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Jetpack = m_Gameplay.FindAction("Jetpack", throwIfNotFound: true);
         m_Gameplay_TakeAim = m_Gameplay.FindAction("TakeAim", throwIfNotFound: true);
         m_Gameplay_EndTurn = m_Gameplay.FindAction("EndTurn", throwIfNotFound: true);
         m_Gameplay_Quit = m_Gameplay.FindAction("Quit", throwIfNotFound: true);
@@ -538,6 +570,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Aim;
     private readonly InputAction m_Gameplay_Fire;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Jetpack;
     private readonly InputAction m_Gameplay_TakeAim;
     private readonly InputAction m_Gameplay_EndTurn;
     private readonly InputAction m_Gameplay_Quit;
@@ -554,6 +587,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
         public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Jetpack => m_Wrapper.m_Gameplay_Jetpack;
         public InputAction @TakeAim => m_Wrapper.m_Gameplay_TakeAim;
         public InputAction @EndTurn => m_Wrapper.m_Gameplay_EndTurn;
         public InputAction @Quit => m_Wrapper.m_Gameplay_Quit;
@@ -583,6 +617,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jetpack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJetpack;
+                @Jetpack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJetpack;
+                @Jetpack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJetpack;
                 @TakeAim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTakeAim;
                 @TakeAim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTakeAim;
                 @TakeAim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTakeAim;
@@ -623,6 +660,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Jetpack.started += instance.OnJetpack;
+                @Jetpack.performed += instance.OnJetpack;
+                @Jetpack.canceled += instance.OnJetpack;
                 @TakeAim.started += instance.OnTakeAim;
                 @TakeAim.performed += instance.OnTakeAim;
                 @TakeAim.canceled += instance.OnTakeAim;
@@ -657,6 +697,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnJetpack(InputAction.CallbackContext context);
         void OnTakeAim(InputAction.CallbackContext context);
         void OnEndTurn(InputAction.CallbackContext context);
         void OnQuit(InputAction.CallbackContext context);

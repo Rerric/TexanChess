@@ -10,11 +10,12 @@ public class ThirdPersonMovement : MonoBehaviour
     public CharacterController controller;
     public GameObject mainCam;
     public Transform cam;
+    private Piece pieceScript;
 
     Vector2 move;
 
     public float speed = 6f;
-    Vector3 velocity;
+    public Vector3 velocity;
     public float gravity = -9.81f; //note this only affects the piece while the controller is enabled
     public float jumpHeight;
 
@@ -24,8 +25,14 @@ public class ThirdPersonMovement : MonoBehaviour
     public LayerMask entityMask;
     public bool isGrounded;
 
+    private bool isFlying;
+    public float flySpeed; //how fast this moves when activating the jetpack
+
     public float turnSpeed = 0.1f;
     private float turnVelocity;
+
+    private AudioManager audioScript;
+    public AudioClip[] moveSounds;
 
     void Awake()
     {
@@ -34,9 +41,16 @@ public class ThirdPersonMovement : MonoBehaviour
         controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
         controls.Gameplay.Jump.performed += ctx => Jump();
+        controls.Gameplay.Jetpack.performed += ctx => Fly(true);
+        controls.Gameplay.Jetpack.canceled += ctx => Fly(false);
+
 
         mainCam = GameObject.Find("Main Camera");
         cam = mainCam.GetComponent<Transform>();
+        pieceScript = GetComponent<Piece>();
+        audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        isFlying = false;
     }
 
     public void OnEnable()
@@ -73,9 +87,15 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDirection.normalized * speed * Time.deltaTime);
         }
-        
+
+        if (isFlying)
+        {
+            velocity.y += flySpeed * Time.deltaTime;
+            //audioScript.PlaySoundPyramind(moveSounds[0], gameObject);
+        }
+
         //gravity
-        velocity.y += gravity * Time.deltaTime;
+        if (isFlying == false) velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
     }
@@ -95,6 +115,14 @@ public class ThirdPersonMovement : MonoBehaviour
         if (isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+    }
+
+    void Fly(bool active)
+    {
+        if (pieceScript.hasJetpack)
+        {
+            isFlying = active;
         }
     }
 }
