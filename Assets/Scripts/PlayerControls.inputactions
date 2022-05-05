@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Jetpack",
+                    "type": "Button",
+                    "id": "9ec65507-1ef8-4d0c-852f-d33e218c1e44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "TakeAim",
                     "type": "Button",
                     "id": "90fab6f4-e61d-4a14-b9c3-4e363106ca6f",
@@ -431,6 +440,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Overhead",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34ef05ba-dbc4-46c6-a2ba-aa4a951771fa",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jetpack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfba9d33-103c-4981-8d45-d21218e93f94",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jetpack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

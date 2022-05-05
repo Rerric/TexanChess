@@ -48,21 +48,20 @@ public class Powerup : MonoBehaviour
             if (Type == "Medkit")
             {
                 piece.health += Health;
-                audioScript.PlaySoundPyramind(Sounds[0], other);
             }
 
             if (Type == "Jetpack")
             {
-
+                piece.JetpackGet();
             }
 
             if (Type == "Whiskey")
             {
                 piece.JackedUp(jackedUpPercentage);
-                audioScript.PlaySoundPyramind(Sounds[0], other);
             }
-           
-            Destroy(gameObject);
+
+        audioScript.PlaySoundPyramind(Sounds[0], other);
+        Destroy(gameObject);
         
     }
 }

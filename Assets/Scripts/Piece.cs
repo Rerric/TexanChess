@@ -25,6 +25,7 @@ public class Piece : MonoBehaviour
 
     public bool hasFired; //checks if this piece has used an attack this turn
     private bool isJacked; //checks if this piece is jacked af
+    public bool hasJetpack; //checks if this piece has a jetpack
 
     private ThirdPersonMovement moveScript;
     private ThirdPersonAiming aimScript;
@@ -35,6 +36,7 @@ public class Piece : MonoBehaviour
     public GameObject gameManager;
     public GameManager gmScript;
     public GameObject body;
+    public GameObject back;
     private UIManager uiScript;
 
     public Material[] newMaterial;
@@ -62,6 +64,7 @@ public class Piece : MonoBehaviour
         body.GetComponent<Renderer>().material = newMaterial[team];
 
         isJacked = false;
+        hasJetpack = false;
 
         currentWeapon = 0;
     }
@@ -92,6 +95,7 @@ public class Piece : MonoBehaviour
                 set = true;
                 hasFired = false;
                 aimScript.power = 0;
+                moveScript.velocity.y = 0;
             }
 
             if (aimScript.isCharging)
@@ -233,6 +237,12 @@ public class Piece : MonoBehaviour
             aimScript.powerMax *= percentage;
             isJacked = true;
         }
+    }
+
+    public void JetpackGet()
+    {
+        hasJetpack = true;
+        back.SetActive(true);
     }
 
     public void Death()
