@@ -97,7 +97,7 @@ public class ThirdPersonMovement : MonoBehaviour
         //gravity
         if (isFlying == false) velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        if (pieceScript.myTurn == true) controller.Move(velocity * Time.deltaTime);
     }
 
     void CheckPhysics()

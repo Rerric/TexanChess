@@ -511,7 +511,8 @@ MonoBehaviour:
   rigidbody: {fileID: 6408029597625824334}
   gameManager: {fileID: 6593430651775738466, guid: 648ac99caa7ed4648b58c1db071d360b, type: 3}
   gmScript: {fileID: 0}
-  body: {fileID: 4343615080369066311}
+  body:
+  - {fileID: 4343615080369066311}
   back: {fileID: 2169329701677045254}
   newMaterial:
   - {fileID: 2100000, guid: 5be57d2bdae513c498d0aa9d7a0a36fe, type: 2}
@@ -540,7 +541,7 @@ MonoBehaviour:
   gravity: -9.81
   jumpHeight: 2
   groundCheck: {fileID: 2892207394526571244}
-  groundDistance: 0.2
+  groundDistance: 0.3
   groundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -966,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3816093478621199370, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4593298199427868336, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
       propertyPath: m_RootOrder
@@ -1011,6 +1012,18 @@ PrefabInstance:
     - target: {fileID: 4593298199427868336, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -53.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018870877669992600, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018870877669992600, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018870877669992600, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7018870877669992600, guid: aa6873aaf2ebbf5488376deb01ec1b38, type: 3}
       propertyPath: m_LocalPosition.x

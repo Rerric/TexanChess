@@ -132,7 +132,6 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (weapon.name == "Shovel")
         {
-            if (isAiming) StopAim();
             gmScript.GoNext();
             
             if (pieceScript.hasFired == false)

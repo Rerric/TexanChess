@@ -19,6 +19,7 @@ public class Piece : MonoBehaviour
     public float distanceMoved; //how far this piece has moved this turn
     private Vector3 startingPos;
     private bool set; //checks if the startingPos is set for this turn
+    private bool hit; //has been hit this turn
 
     public GameObject[] weapons = new GameObject[6]; //weapons / powerups this piece has in its inventory
     public int currentWeapon;
@@ -35,7 +36,7 @@ public class Piece : MonoBehaviour
 
     public GameObject gameManager;
     public GameManager gmScript;
-    public GameObject body;
+    public GameObject[] body;
     public GameObject back;
     private UIManager uiScript;
 
@@ -51,6 +52,7 @@ public class Piece : MonoBehaviour
     void Start()
     {
         set = false;
+        hit = false;
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         gameManager = GameObject.Find("GameManager");
         gmScript = gameManager.GetComponent<GameManager>();
@@ -61,7 +63,10 @@ public class Piece : MonoBehaviour
 
         health = healthMax;
 
-        body.GetComponent<Renderer>().material = newMaterial[team];
+        for (int i = 0; i < body.Length; i++)
+        {
+            body[i].GetComponent<Renderer>().material = newMaterial[team];
+        }
 
         isJacked = false;
         hasJetpack = false;
@@ -128,8 +133,7 @@ public class Piece : MonoBehaviour
         {
             //otherwise : I can't be controlled and physics will affect me
             gameObject.layer = 6;
-            DisableScripts();
-
+            if (hit == false) DisableScripts();
             set = false;
         }
 
@@ -141,6 +145,7 @@ public class Piece : MonoBehaviour
     public void EnableScripts()
     {
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        hit = false;
         moveScript.enabled = true;
         aimScript.enabled = true;
         controller.enabled = true;
@@ -225,6 +230,7 @@ public class Piece : MonoBehaviour
 
     public void ImHit()
     {
+        hit = true;
         rigidbody.constraints = RigidbodyConstraints.None;
     }
 

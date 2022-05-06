@@ -78,7 +78,7 @@ public class MeleeAnimator : MonoBehaviour
 
     void CheckHits()
     {
-        Collider[] others = Physics.OverlapSphere(hitPoint.position, 1f);
+        Collider[] others = Physics.OverlapSphere(hitPoint.position, 2f);
 
         foreach (Collider hit in others)
         {

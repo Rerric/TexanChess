@@ -3396,6 +3396,7 @@ MonoBehaviour:
   teams: 0
   turn: 0
   piecePrefabs:
+  - {fileID: 423895046232726561, guid: d9ffc77657a315745916a6042b24abe2, type: 3}
   - {fileID: 7712056588359406962, guid: 548bb680afaa2dd4e8bf33b8e0e935c7, type: 3}
   pieces1: []
   pieces2: []
@@ -7035,7 +7036,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856377901}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8758,7 +8759,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055188944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -10401,18 +10402,6 @@ PrefabInstance:
     - target: {fileID: 761847762193227235, guid: 1e316261f8f2a684ea8c0c6a88a4a5a3, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.y
-      value: 84.0168
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.y
-      value: 42.0084
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e316261f8f2a684ea8c0c6a88a4a5a3, type: 3}
@@ -17112,30 +17101,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 635117686}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Size.x
-      value: 289.84418
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.y
-      value: 412.28906
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.z
-      value: 251.88931
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.x
-      value: 19.832016
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.y
-      value: 206.14453
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.z
-      value: 9.783352
-      objectReference: {fileID: 0}
     - target: {fileID: 8528218168228545637, guid: 521d163e8ad30c74aae89ea52b32f27f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -17481,30 +17446,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 635117686}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Size.x
-      value: 258.28772
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.y
-      value: 354.6917
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.z
-      value: 290.02115
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.x
-      value: 1.8975624
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.y
-      value: 177.34586
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.z
-      value: 37.340866
-      objectReference: {fileID: 0}
     - target: {fileID: 8528218168228545637, guid: 521d163e8ad30c74aae89ea52b32f27f, type: 3}
       propertyPath: m_RootOrder
       value: 2
