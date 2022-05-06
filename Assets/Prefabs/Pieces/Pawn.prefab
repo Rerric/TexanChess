@@ -497,7 +497,7 @@ MonoBehaviour:
   health: 0
   healthBar: {fileID: 1642014768355246728}
   healthBarJuice: {fileID: 974821835099951803}
-  movementMax: 20
+  movementMax: 100
   distanceMoved: 0
   weapons:
   - {fileID: 3787472735819504525}
@@ -548,7 +548,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
-  flySpeed: 3
+  flySpeed: 10
   turnSpeed: 0.1
   moveSounds:
   - {fileID: 8300000, guid: b602b29d5688fd04e9d2e7e98a99c1a5, type: 3}
@@ -572,7 +572,7 @@ MonoBehaviour:
   isAiming: 0
   isCharging: 0
   power: 0
-  powerMax: 30
+  powerMax: 40
   meleeDamage: 20
   meleeStrength: 3000
   arms: {fileID: 5580462263653188420}

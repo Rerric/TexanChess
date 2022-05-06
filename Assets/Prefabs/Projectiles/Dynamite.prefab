@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 224317056274189011}
   body: {fileID: 7759339058693900797}
-  damageMax: 40
-  damageMin: 10
+  damageMax: 45
+  damageMin: 15
   radius: 8
   forceMax: 2000
   forceUp: 2

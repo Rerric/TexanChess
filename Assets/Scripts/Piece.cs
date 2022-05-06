@@ -140,7 +140,7 @@ public class Piece : MonoBehaviour
 
     public void EnableScripts()
     {
-        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         moveScript.enabled = true;
         aimScript.enabled = true;
         controller.enabled = true;

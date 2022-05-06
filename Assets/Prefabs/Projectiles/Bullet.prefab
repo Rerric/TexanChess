@@ -130,7 +130,8 @@ MonoBehaviour:
   damage: 25
   speed: 10
   gravity: -9.81
-  gravityOffset: 0.05
+  gravityOffset: 0.1
+  gravityIncrease: 0.2
   bounces: 2
   lifetime: 6
   slideTime: 20

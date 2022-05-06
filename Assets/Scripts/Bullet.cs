@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     Vector3 movementDirection;
     public float gravity = -9.81f; //note this only affects the piece while the controller is enabled
     public float gravityOffset;
+    public float gravityIncrease; //how much gravity increases when this hits something
 
     public int bounces;
     public float lifetime; //how long this projectile can exist before expiring
@@ -76,9 +77,9 @@ public class Bullet : MonoBehaviour
         var _speed = movementDirection.magnitude;
         var direction = Vector3.Reflect(movementDirection.normalized, collision.contacts[0].normal);
 
-        rb.velocity = direction * speed * 2.0f;
+        rb.velocity = direction * speed * 3.0f;
 
-        gravityOffset += 0.1f;
+        gravityOffset += gravityIncrease;
         
     }
 
