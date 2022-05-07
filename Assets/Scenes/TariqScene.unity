@@ -262,23 +262,23 @@ PrefabInstance:
     - target: {fileID: -5759796650755848422, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     - target: {fileID: -5071224072022411245, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     - target: {fileID: -3698358633214190679, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     - target: {fileID: -1708119070355947359, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     - target: {fileID: -1337762213580631955, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     - target: {fileID: 919132149155446097, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Name
       value: Sheriff Star 3D Model
@@ -286,11 +286,11 @@ PrefabInstance:
     - target: {fileID: 1571776343153713069, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     - target: {fileID: 3407223314981601719, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b2daeeba0398724a98d788e9c8ab1d4, type: 2}
+      objectReference: {fileID: 2100000, guid: ce930f53e1128474ea06047c170cddc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5738abf6481eca43be5667b4908df3b, type: 3}
 --- !u!1001 &751181887
