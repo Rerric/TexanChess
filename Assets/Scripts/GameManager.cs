@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         if (followingProjectile) followingProjectile = false;
         NextTurn();
-        Debug.Log("Next!");
+        
     }
 
     public void UpdatePieceIDs(int team, int id)
