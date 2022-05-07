@@ -3397,7 +3397,7 @@ MonoBehaviour:
   turn: 0
   piecePrefabs:
   - {fileID: 423895046232726561, guid: d9ffc77657a315745916a6042b24abe2, type: 3}
-  - {fileID: 7712056588359406962, guid: 548bb680afaa2dd4e8bf33b8e0e935c7, type: 3}
+  - {fileID: 2342343129647610446, guid: 7afb959c54e4f6840be581ab9bee39ec, type: 3}
   pieces1: []
   pieces2: []
   t1Count: 0

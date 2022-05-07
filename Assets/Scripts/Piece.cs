@@ -37,6 +37,7 @@ public class Piece : MonoBehaviour
     public GameObject gameManager;
     public GameManager gmScript;
     public GameObject[] body;
+    public GameObject[] hat;
     public GameObject back;
     private UIManager uiScript;
 
@@ -63,6 +64,7 @@ public class Piece : MonoBehaviour
 
         health = healthMax;
 
+        hat[team - 1].SetActive(true);
         for (int i = 0; i < body.Length; i++)
         {
             body[i].GetComponent<Renderer>().material = newMaterial[team];
