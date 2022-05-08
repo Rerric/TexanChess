@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 
                 if (kingScript.team == 1) //Spawn piece for team 1
                 {
-                    var piece = Instantiate(piecePrefabs[1], spawnPoints1[counter], transform.rotation);
+                    var piece = Instantiate(piecePrefabs[counter], spawnPoints1[counter], transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
                     pieceScript.team = kingScript.team;
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
                 if (kingScript.team == 2) //Spawn piece for team 2
                 {
-                    var piece = Instantiate(piecePrefabs[1], spawnPoints2[counter], transform.rotation);
+                    var piece = Instantiate(piecePrefabs[counter], spawnPoints2[counter], transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
                     pieceScript.team = kingScript.team;
