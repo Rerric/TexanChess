@@ -42,15 +42,18 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(Physics.gravity * rb.mass * gravityOffset);
-
-        movementDirection = rb.velocity;
-
-        if (movementDirection != Vector3.zero)
+        if (gmScript.isPaused == false)
         {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection.normalized, Vector3.forward);
+            rb.AddForce(Physics.gravity * rb.mass * gravityOffset);
 
-            transform.rotation = toRotation; //Rotate in direction of movement
+            movementDirection = rb.velocity;
+
+            if (movementDirection != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(movementDirection.normalized, Vector3.forward);
+
+                transform.rotation = toRotation; //Rotate in direction of movement
+            }
         }
     }
 
@@ -87,7 +90,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer == 3) //if it's the ground
         {
-            slideTime -= 1f;
+            if (gmScript.isPaused == false) slideTime -= 1f;
             if (slideTime <= 0)
             {
                 Destroy(gameObject);

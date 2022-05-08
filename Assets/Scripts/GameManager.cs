@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public CameraController cameraScript;
 
     public bool isOverhead; //whether the view of the game is currently in the overhead view
+    public bool isPaused; //whether the game is currently paused
 
     private Vector3 spawn;
 
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         controls.Gameplay.EndTurn.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
         controls.Gameplay.Toggle.performed += ctx => ToggleControls();
         controls.Gameplay.Overhead.performed += ctx => ToggleOverhead(); //toggles overhead / bird's eye view camera
+        controls.Gameplay.Pause.performed += ctx => TogglePause();
         controls.Gameplay.Quit.performed += ctx => Application.Quit();
 
         teams = Players;
@@ -275,6 +277,20 @@ public class GameManager : MonoBehaviour
             isOverhead = false;
             mainCam.orthographic = false;
             overheadCam.Priority -= 10;
+        }
+    }
+
+    void TogglePause()
+    {
+        if (isPaused == false)
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            isPaused = false;
         }
     }
 }

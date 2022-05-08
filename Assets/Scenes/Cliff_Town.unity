@@ -13322,6 +13322,7 @@ GameObject:
   - component: {fileID: 1638252608}
   - component: {fileID: 1638252607}
   - component: {fileID: 1638252606}
+  - component: {fileID: 1638252611}
   m_Layer: 0
   m_Name: Third Person Camera
   m_TagString: Untagged
@@ -13466,6 +13467,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638252611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638252605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1651428523
 PrefabInstance:
   m_ObjectHideFlags: 0
