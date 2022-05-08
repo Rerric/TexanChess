@@ -38,13 +38,11 @@ public class GameManager : MonoBehaviour
 
     public bool isOverhead; //whether the view of the game is currently in the overhead view
 
-    public GameObject spawnPoint1; //Team 1 Spawn
-    public GameObject spawnPoint2; //Team 2 Spawn
     private Vector3 spawn;
     public float spawnOffset; //Determines how far away pieces spawn from the king
 
-    public Vector3[] spawnPoints1 = new Vector3[5];
-    public Vector3[] spawnPoints2 = new Vector3[5];
+    public GameObject[] spawnPoints1 = new GameObject[6];
+    public GameObject[] spawnPoints2 = new GameObject[6];
 
     public Canvas defaultCanvas;
     public Canvas aimCanvas;
@@ -80,7 +78,7 @@ public class GameManager : MonoBehaviour
 
         isOverhead = false;
 
-        FindSpawnPoints();
+        //FindSpawnPoints();
         GameStart();
     }
 
@@ -102,8 +100,8 @@ public class GameManager : MonoBehaviour
     void SpawnTeams(int teams)
     {
         //Get Spawn positions
-        var spawn1 = spawnPoints1[0];
-        var spawn2 = spawnPoints2[0];
+        var spawn1 = spawnPoints1[0].transform.position;
+        var spawn2 = spawnPoints2[0].transform.position;
         
 
         //Spawn King for each team
@@ -125,13 +123,13 @@ public class GameManager : MonoBehaviour
 
             var counter = 1;
 
-            for (var e = 0; e < 4; e++) //Spawn 4 pieces for each team
+            for (var e = 0; e < 5; e++) //Spawn 4 pieces for each team
             {
                 var _id = e + 2;
 
                 if (kingScript.team == 1) //Spawn piece for team 1
                 {
-                    var piece = Instantiate(piecePrefabs[counter], spawnPoints1[counter], transform.rotation);
+                    var piece = Instantiate(piecePrefabs[counter], spawnPoints1[counter].transform.position, transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
                     pieceScript.team = kingScript.team;
@@ -141,7 +139,7 @@ public class GameManager : MonoBehaviour
 
                 if (kingScript.team == 2) //Spawn piece for team 2
                 {
-                    var piece = Instantiate(piecePrefabs[counter], spawnPoints2[counter], transform.rotation);
+                    var piece = Instantiate(piecePrefabs[counter], spawnPoints2[counter].transform.position, transform.rotation);
                     var pieceTransform = piece.GetComponent<Transform>();
                     var pieceScript = piece.GetComponent<Piece>();
                     pieceScript.team = kingScript.team;
@@ -158,19 +156,7 @@ public class GameManager : MonoBehaviour
 
     void FindSpawnPoints()
     {
-        //Team 1
-        spawnPoints1[0] = spawnPoint1.transform.position;
-        spawnPoints1[1] = new Vector3(spawnPoints1[0].x, spawnPoints1[0].y, spawnPoints1[0].z + spawnOffset);
-        spawnPoints1[2] = new Vector3(spawnPoints1[0].x, spawnPoints1[0].y, spawnPoints1[0].z - spawnOffset);
-        spawnPoints1[3] = new Vector3(spawnPoints1[0].x - spawnOffset / 2, spawnPoints1[0].y, spawnPoints1[0].z + spawnOffset / 2);
-        spawnPoints1[4] = new Vector3(spawnPoints1[0].x - spawnOffset / 2, spawnPoints1[0].y, spawnPoints1[0].z - spawnOffset / 2);
-
-        //Team 2
-        spawnPoints2[0] = spawnPoint2.transform.position;
-        spawnPoints2[1] = new Vector3(spawnPoints2[0].x, spawnPoints2[0].y, spawnPoints2[0].z + spawnOffset);
-        spawnPoints2[2] = new Vector3(spawnPoints2[0].x, spawnPoints2[0].y, spawnPoints2[0].z - spawnOffset);
-        spawnPoints2[3] = new Vector3(spawnPoints2[0].x + spawnOffset / 2, spawnPoints2[0].y, spawnPoints2[0].z + spawnOffset / 2);
-        spawnPoints2[4] = new Vector3(spawnPoints2[0].x + spawnOffset / 2, spawnPoints2[0].y, spawnPoints2[0].z - spawnOffset / 2);
+        
     }
 
     void UpdateCamera()
