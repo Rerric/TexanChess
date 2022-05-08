@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public bool isOverhead; //whether the view of the game is currently in the overhead view
 
     private Vector3 spawn;
-    public float spawnOffset; //Determines how far away pieces spawn from the king
 
     public GameObject[] spawnPoints1 = new GameObject[6];
     public GameObject[] spawnPoints2 = new GameObject[6];
@@ -78,7 +77,6 @@ public class GameManager : MonoBehaviour
 
         isOverhead = false;
 
-        //FindSpawnPoints();
         GameStart();
     }
 
@@ -152,11 +150,6 @@ public class GameManager : MonoBehaviour
             }   
         }
 
-    }
-
-    void FindSpawnPoints()
-    {
-        
     }
 
     void UpdateCamera()
