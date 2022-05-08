@@ -605,6 +605,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -765618251063329128, guid: 9bd7f5f3354a0cf42bef44dd390dcb87, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f7715ec978553d4baf122983a616ecc, type: 2}
+    - target: {fileID: -287074730273748370, guid: 9bd7f5f3354a0cf42bef44dd390dcb87, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f7715ec978553d4baf122983a616ecc, type: 2}
     - target: {fileID: 919132149155446097, guid: 9bd7f5f3354a0cf42bef44dd390dcb87, type: 3}
       propertyPath: m_Name
       value: Cowboy Belt 3D Model
