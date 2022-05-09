@@ -51,6 +51,7 @@ MonoBehaviour:
   rotationSpeed: 0.5
   Sounds:
   - {fileID: 8300000, guid: 1bbce161807266648b1403e8f09d6929, type: 3}
+  particle: {fileID: 0}
 --- !u!65 &7619907839700668986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71,6 +72,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3196800739528306630}
     m_Modifications:
+    - target: {fileID: 3660458400106722083, guid: 91c95f410944f234ebe9932590b2eeb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030626080730852654, guid: 91c95f410944f234ebe9932590b2eeb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8460578079371632957, guid: 91c95f410944f234ebe9932590b2eeb8, type: 3}
       propertyPath: m_Name
       value: Jetpack
@@ -107,7 +116,9 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5991846093488769553, guid: 91c95f410944f234ebe9932590b2eeb8, type: 3}
+    - {fileID: 9194946852385262629, guid: 91c95f410944f234ebe9932590b2eeb8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 91c95f410944f234ebe9932590b2eeb8, type: 3}
 --- !u!4 &5797703595771042704 stripped
 Transform:

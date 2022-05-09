@@ -25,7 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public LayerMask entityMask;
     public bool isGrounded;
 
-    private bool isFlying;
+    public bool isFlying;
     public float flySpeed; //how fast this moves when activating the jetpack
 
     public float turnSpeed = 0.1f;
@@ -33,6 +33,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private AudioManager audioScript;
     public AudioClip[] moveSounds;
+
+    public GameObject moveParticle;
 
     void Awake()
     {
@@ -61,6 +63,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public void OnDisable()
     {
         controls.Gameplay.Disable();
+        moveParticle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -97,7 +100,16 @@ public class ThirdPersonMovement : MonoBehaviour
         //gravity
         if (isFlying == false) velocity.y += gravity * Time.deltaTime;
 
-        if (pieceScript.myTurn == true) controller.Move(velocity * Time.deltaTime);
+        if (pieceScript.myTurn == true)
+        {
+            controller.Move(velocity * Time.deltaTime);
+
+            if ((horizontal != 0f || vertical != 0f) && isGrounded)
+            {
+                moveParticle.SetActive(true);
+            }
+            else moveParticle.SetActive(false);
+        }
     }
 
     void CheckPhysics()

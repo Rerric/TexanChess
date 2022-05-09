@@ -11,14 +11,18 @@ public class Powerup : MonoBehaviour
 
     public float rotationSpeed;
 
+    private GameManager gmScript;
     private AudioManager audioScript;
     public AudioClip[] Sounds;
+
+    public GameObject particle;
 
     private float direction = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         InvokeRepeating("Float", 0f, 1f);
@@ -27,8 +31,11 @@ public class Powerup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0f, direction * Time.deltaTime * 0.5f, 0f);
-        transform.Rotate(0f, rotationSpeed, 0f);
+        if (gmScript.isPaused == false)
+        {
+            transform.Translate(0f, direction * Time.deltaTime * 0.5f, 0f);
+            transform.Rotate(0f, rotationSpeed, 0f);
+        }
     }
 
     void Float()
@@ -48,6 +55,8 @@ public class Powerup : MonoBehaviour
             if (Type == "Medkit")
             {
                 piece.health += Health;
+                var _particle = Instantiate(particle, other.transform.position, Quaternion.identity);
+                _particle.transform.localScale *= 0.5f;
             }
 
             if (Type == "Jetpack")

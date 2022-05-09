@@ -49,6 +49,8 @@ public class Piece : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip cycleSound;
 
+    public GameObject[] particles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -244,7 +246,14 @@ public class Piece : MonoBehaviour
             aimScript.meleeDamage *= percentage;
             aimScript.powerMax *= percentage;
             isJacked = true;
+            InvokeRepeating("DrunkParticle", 0f, 3f);
         }
+    }
+
+    public void DrunkParticle()
+    {
+        var particle = Instantiate(particles[0], transform.position, Quaternion.identity);
+        particle.transform.localScale *= 0.5f;
     }
 
     public void JetpackGet()
