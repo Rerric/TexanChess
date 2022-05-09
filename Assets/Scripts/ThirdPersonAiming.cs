@@ -140,6 +140,17 @@ public class ThirdPersonAiming : MonoBehaviour
                 meleeAnim.Swing();
             }
         }
+
+        if (weapon.name == "Cane")
+        {
+            gmScript.GoNext();
+
+            if (pieceScript.hasFired == false)
+            {
+                pieceScript.hasFired = true;
+                meleeAnim.Swing();
+            }
+        }
     }
 
     void Charge()

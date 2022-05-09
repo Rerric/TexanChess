@@ -58,8 +58,13 @@ public class UIManager : MonoBehaviour
                 {
                     weaponIcons[i].sprite = iconSprites[2];
                 }
+
+                if (_weapons[i].name == "Cane")
+                {
+                    weaponIcons[i].sprite = iconSprites[3];
+                }
             }
-            else weaponIcons[i].sprite = null;
+            else weaponIcons[i].sprite = iconSprites[4];
         }
 
         if (_weapons[currentSlot] != null)
@@ -67,6 +72,7 @@ public class UIManager : MonoBehaviour
             if (_weapons[currentSlot].name == "Revolver") reticle.sprite = reticleSprites[0];
             if (_weapons[currentSlot].name == "Dynamite") reticle.sprite = reticleSprites[1];
             if (_weapons[currentSlot].name == "Shovel") reticle.sprite = reticleSprites[2];
+            if (_weapons[currentSlot].name == "Cane") reticle.sprite = reticleSprites[2];
         }
     }
 }

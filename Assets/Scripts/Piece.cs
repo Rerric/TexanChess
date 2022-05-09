@@ -175,12 +175,15 @@ public class Piece : MonoBehaviour
 
     public void CycleWeapons(int dir)
     {
-        if (aimScript.isCharging == false)
+        if (weapons.Length > 1)
         {
-            currentWeapon += dir;
-            if (currentWeapon >= weapons.Length) currentWeapon = 0;
-            if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
-            audioScript.PlaySoundPyramind(cycleSound, gameObject);
+            if (aimScript.isCharging == false)
+            {
+                currentWeapon += dir;
+                if (currentWeapon >= weapons.Length) currentWeapon = 0;
+                if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
+                audioScript.PlaySoundPyramind(cycleSound, gameObject);
+            }
         }
     }
 
@@ -225,6 +228,11 @@ public class Piece : MonoBehaviour
 
     void UpdateActionWheel()
     {
+        for (int i = 0; i < 6; i++)
+        {
+            uiScript._weapons[i] = null;
+        }
+
         for (int i = 0; i < weapons.Length; i++)
         {
             uiScript._weapons[i] = weapons[i];

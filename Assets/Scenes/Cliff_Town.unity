@@ -3622,7 +3622,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 92716e1021b8d1846af866c1da8fa138, type: 3}
   - {fileID: 21300000, guid: ebdca35e01cf9a34d96154117d7f720b, type: 3}
   - {fileID: 21300000, guid: 4c6e20b48b49ed04a8d8ea34002ec4b0, type: 3}
-  - {fileID: 0}
+  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   reticleSprites:
   - {fileID: 21300000, guid: 502552c9492cf8d4199d5e7272d57dee, type: 3}
   - {fileID: 21300000, guid: a43fe68f65093294ca4a5dbb701f1a96, type: 3}
@@ -3660,6 +3660,7 @@ MonoBehaviour:
   mainCam: {fileID: 609135208}
   cameraScript: {fileID: 0}
   isOverhead: 0
+  isPaused: 0
   spawnPoints1:
   - {fileID: 953389740}
   - {fileID: 1123090955}
