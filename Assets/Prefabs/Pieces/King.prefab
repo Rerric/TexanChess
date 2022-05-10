@@ -248,7 +248,7 @@ MonoBehaviour:
   power: 0
   powerMax: 40
   meleeDamage: 15
-  meleeStrength: 6000
+  meleeStrength: 5000
   arms: {fileID: 2564386621141355031}
   meleeAnim: {fileID: 5201883388690459480}
   firePoint: {fileID: 8543629920206325729}
