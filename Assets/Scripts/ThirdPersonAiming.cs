@@ -95,7 +95,7 @@ public class ThirdPersonAiming : MonoBehaviour
         
     }
 
-    void StopAim()
+    public void StopAim()
     {
         if (isCharging == false)
         {
@@ -132,8 +132,7 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (weapon.name == "Shovel")
         {
-            gmScript.GoNext();
-            
+   
             if (pieceScript.hasFired == false)
             {
                 pieceScript.hasFired = true;
@@ -143,7 +142,6 @@ public class ThirdPersonAiming : MonoBehaviour
 
         if (weapon.name == "Cane")
         {
-            gmScript.GoNext();
 
             if (pieceScript.hasFired == false)
             {

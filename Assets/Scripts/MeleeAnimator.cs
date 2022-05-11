@@ -7,6 +7,7 @@ public class MeleeAnimator : MonoBehaviour
     public GameObject piece;
     public ThirdPersonAiming aimScript;
     public Piece pieceScript;
+    private GameManager gmScript;
 
     public bool _isAiming;
     public bool isSwinging;
@@ -27,6 +28,7 @@ public class MeleeAnimator : MonoBehaviour
     {
         aimScript = piece.GetComponent<ThirdPersonAiming>();
         pieceScript = piece.GetComponent<Piece>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
@@ -56,16 +58,20 @@ public class MeleeAnimator : MonoBehaviour
 
         if (pieceScript.myTurn == false)
         {
-            
+
             animator.SetTrigger("Reset");
             animator.ResetTrigger("Attack");
         }
-        else animator.ResetTrigger("Reset");
+        else
+        {
+            animator.ResetTrigger("Reset");
+        }
     }
 
     public void Swing()
     {
         isSwinging = true;
+        gmScript.isSwinging = true;
         animator.SetTrigger("Attack");
     }
 
@@ -73,6 +79,8 @@ public class MeleeAnimator : MonoBehaviour
     {
         _hitThisTurn.Clear();
         isSwinging = false;
+        
+        gmScript.GoNext();
         pieceScript.DisableScripts();
     }
 

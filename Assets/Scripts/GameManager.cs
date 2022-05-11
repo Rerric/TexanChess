@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject cameraLookAt;
     public Transform pieceToFollow; //which piece the camera is currently following
-    private Transform projectileToFollow; 
+    private Transform projectileToFollow;
     public bool followingProjectile; //if the game is currently following a projectile
 
     //Important Scripts & Objects to communicate with
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public bool isOverhead; //whether the view of the game is currently in the overhead view
     public bool isPaused; //whether the game is currently paused
+    public bool isSwinging;
 
     private Vector3 spawn;
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        controls.Gameplay.EndTurn.performed += ctx => NextTurn(); //controls here are enabled mainly for debugging and testing
+        controls.Gameplay.EndTurn.performed += ctx => NextTurn(false); //controls here are enabled mainly for debugging and testing
         controls.Gameplay.Toggle.performed += ctx => ToggleControls();
         controls.Gameplay.Overhead.performed += ctx => ToggleOverhead(); //toggles overhead / bird's eye view camera
         controls.Gameplay.Pause.performed += ctx => TogglePause();
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
         overheadCam = GameObject.Find("Overhead Camera").GetComponent<CinemachineVirtualCamera>();
 
         isOverhead = false;
+        isSwinging = false;
 
         GameStart();
     }
@@ -102,11 +104,11 @@ public class GameManager : MonoBehaviour
         //Get Spawn positions
         var spawn1 = spawnPoints1[0].transform.position;
         var spawn2 = spawnPoints2[0].transform.position;
-        
+
 
         //Spawn King for each team
         for (var i = 0; i < teams; i++)
-        { 
+        {
             if (i == 0) spawn = spawn1;
             if (i == 1) spawn = spawn2;
 
@@ -149,7 +151,7 @@ public class GameManager : MonoBehaviour
 
                 counter += 1;
 
-            }   
+            }
         }
 
     }
@@ -177,9 +179,11 @@ public class GameManager : MonoBehaviour
         if (turn == 2) teamFlag.sprite = sprites[1];
     }
 
-    public void NextTurn()
+    public void NextTurn(bool trigger) //trigger signals that we've ended the turn as a result of the gonext timer
     {
-        if (followingProjectile == false)
+        var piece = pieceToFollow.gameObject.GetComponent<ThirdPersonAiming>();
+        
+        if ((followingProjectile == false && piece.isAiming == false && piece.isCharging == false && isSwinging == false) || trigger)
         {
             turn += 1;
             if (turn > teams)
@@ -210,7 +214,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         if (followingProjectile) followingProjectile = false;
-        NextTurn();
+        isSwinging = false;
+        NextTurn(true);
         
     }
 
