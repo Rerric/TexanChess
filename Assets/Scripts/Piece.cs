@@ -14,6 +14,7 @@ public class Piece : MonoBehaviour
     public float health;
     public GameObject healthBar;
     public GameObject healthBarJuice;
+    public GameObject icon;
 
     public float movementMax; //how far this piece can move in one turn
     public float distanceMoved; //how far this piece has moved this turn
@@ -75,6 +76,12 @@ public class Piece : MonoBehaviour
         isJacked = false;
         hasJetpack = false;
 
+        var iconSprite = icon.GetComponent<SpriteRenderer>();
+        var iconIndex = 0;
+        if (team == 2) iconIndex = 6;
+        iconSprite.sprite = uiScript.pieceSprites[pieceID + iconIndex];
+        icon.SetActive(false);
+
         currentWeapon = 0;
     }
 
@@ -96,6 +103,7 @@ public class Piece : MonoBehaviour
             gmScript.pieceToFollow = pieceTransform; //tell the camera to follow this piece
             //while it's myTurn : control me and ignore natural physics
             gameObject.layer = 7;
+            if (isKing) icon.SetActive(false);
             if (hasFired == false) EnableScripts();
 
             if (set == false)
@@ -137,6 +145,7 @@ public class Piece : MonoBehaviour
         {
             //otherwise : I can't be controlled and physics will affect me
             gameObject.layer = 6;
+            if (isKing) icon.SetActive(true);
             if (hit == false) DisableScripts();
             set = false;
         }

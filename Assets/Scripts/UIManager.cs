@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Image reticle;
     public Sprite[] iconSprites;
     public Sprite[] reticleSprites;
+    public Sprite[] pieceSprites;
 
     public int currentSlot; //which slot is active in the player's inventory / what weapon they have selected
 
