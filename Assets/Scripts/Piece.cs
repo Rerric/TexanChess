@@ -288,6 +288,11 @@ public class Piece : MonoBehaviour
 
         gmScript.UpdatePieceIDs(team, pieceID);
         if (myTurn) gmScript.NextTurn(true);
+        if (isKing)
+        {
+            if (team == 1) gmScript.Win(2);
+            if (team == 2) gmScript.Win(1);
+        }
 
         audioScript.PlaySoundPyramind(deathSound, gameObject);
 

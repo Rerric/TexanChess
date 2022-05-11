@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int turn; //what team's turn it currently is
 
     private bool gameStarted; //determines if the game has begun
+    public bool gameEnded; //determines if the game's over
 
     public GameObject[] piecePrefabs;
 
@@ -61,14 +62,20 @@ public class GameManager : MonoBehaviour
     {
         controls = new PlayerControls();
         controls.Gameplay.Enable();
+        controls.Paused.Disable();
 
         Cursor.lockState = CursorLockMode.Locked;
 
+        //Gameplay Controls
         controls.Gameplay.EndTurn.performed += ctx => NextTurn(false); //controls here are enabled mainly for debugging and testing
         controls.Gameplay.Toggle.performed += ctx => ToggleControls();
         controls.Gameplay.Overhead.performed += ctx => ToggleOverhead(); //toggles overhead / bird's eye view camera
         controls.Gameplay.Pause.performed += ctx => TogglePause();
         controls.Gameplay.Quit.performed += ctx => Application.Quit();
+
+        //Paused Controls
+        controls.Paused.Unpause.performed += ctx => TogglePause();
+        controls.Paused.Quit.performed += ctx => Application.Quit();
 
         teams = Players;
         turn = 1; //team 1 starts first
@@ -89,14 +96,14 @@ public class GameManager : MonoBehaviour
     {
         UpdateCamera();
         UpdateUI();
-        if (pieces1.Count == 0) winner2.SetActive(true);
-        if (pieces2.Count == 0) winner1.SetActive(true);
+        CheckWinner();
     }
 
     void GameStart()
     {
         SpawnTeams(teams);
         gameStarted = true;
+        gameEnded = false;
     }
 
     void SpawnTeams(int teams)
@@ -182,25 +189,28 @@ public class GameManager : MonoBehaviour
     public void NextTurn(bool trigger) //trigger signals that we've ended the turn as a result of the gonext timer
     {
         var piece = pieceToFollow.gameObject.GetComponent<ThirdPersonAiming>();
-        
-        if ((followingProjectile == false && piece.isAiming == false && piece.isCharging == false && isSwinging == false) || trigger)
+
+        if (gameEnded == false)
         {
-            turn += 1;
-            if (turn > teams)
+            if ((followingProjectile == false && piece.isAiming == false && piece.isCharging == false && isSwinging == false) || trigger)
             {
-                turn = 1;
-            }
+                turn += 1;
+                if (turn > teams)
+                {
+                    turn = 1;
+                }
 
-            if (turn == 1)
-            {
-                t1Count += 1;
-                if (t1Count > pieces1.Count) t1Count = 1;
-            }
+                if (turn == 1)
+                {
+                    t1Count += 1;
+                    if (t1Count > pieces1.Count) t1Count = 1;
+                }
 
-            if (turn == 2)
-            {
-                t2Count += 1;
-                if (t2Count > pieces2.Count) t2Count = 1;
+                if (turn == 2)
+                {
+                    t2Count += 1;
+                    if (t2Count > pieces2.Count) t2Count = 1;
+                }
             }
         }
     }
@@ -291,11 +301,36 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             isPaused = true;
+            controls.Gameplay.Disable();
+            controls.Paused.Enable();
         }
         else
         {
             Time.timeScale = 1;
             isPaused = false;
+            controls.Gameplay.Enable();
+            controls.Paused.Disable();
         }
+    }
+
+    void CheckWinner()
+    {
+        if (pieces1.Count == 0)
+        {
+            Win(2);
+        }
+
+        if (pieces2.Count == 0)
+        {
+            Win(1);
+        }
+    }
+
+    public void Win(int team)
+    {
+        gameEnded = true;
+
+        if (team == 1) winner1.SetActive(true);
+        if (team == 2) winner2.SetActive(true);
     }
 }

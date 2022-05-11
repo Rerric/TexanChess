@@ -488,6 +488,127 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Paused"",
+            ""id"": ""1136413f-1c38-4e17-9d08-945e77bcb15a"",
+            ""actions"": [
+                {
+                    ""name"": ""Unpause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d636789-7150-4ece-8bcb-0b04f00f9e12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e3ff7db-0798-424b-915e-64547e751de8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""d7bfbc21-597b-4381-8585-556f45188254"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbd1556f-a7e1-425b-9bf7-3b541bb18fcf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""32307939-f2b3-4969-986b-10c36f9815de"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b42d1af9-5ee5-42f5-b802-ae0e1bf35223"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a05dc58-c28a-47ef-b88f-c502dcb9982e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""053022cf-549d-4889-b8fd-2878fd6a0398"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""381833cf-22c6-4909-a4ea-91108192d646"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""343e5d74-4006-44fa-9bc2-c5326b06a0a2"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d54c334d-2f94-4dc4-9ab7-909e7c42c039"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -507,6 +628,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_CycleRight = m_Gameplay.FindAction("CycleRight", throwIfNotFound: true);
         m_Gameplay_Toggle = m_Gameplay.FindAction("Toggle", throwIfNotFound: true);
         m_Gameplay_Overhead = m_Gameplay.FindAction("Overhead", throwIfNotFound: true);
+        // Paused
+        m_Paused = asset.FindActionMap("Paused", throwIfNotFound: true);
+        m_Paused_Unpause = m_Paused.FindAction("Unpause", throwIfNotFound: true);
+        m_Paused_Select = m_Paused.FindAction("Select", throwIfNotFound: true);
+        m_Paused_Back = m_Paused.FindAction("Back", throwIfNotFound: true);
+        m_Paused_Quit = m_Paused.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -691,6 +818,63 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Paused
+    private readonly InputActionMap m_Paused;
+    private IPausedActions m_PausedActionsCallbackInterface;
+    private readonly InputAction m_Paused_Unpause;
+    private readonly InputAction m_Paused_Select;
+    private readonly InputAction m_Paused_Back;
+    private readonly InputAction m_Paused_Quit;
+    public struct PausedActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PausedActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Unpause => m_Wrapper.m_Paused_Unpause;
+        public InputAction @Select => m_Wrapper.m_Paused_Select;
+        public InputAction @Back => m_Wrapper.m_Paused_Back;
+        public InputAction @Quit => m_Wrapper.m_Paused_Quit;
+        public InputActionMap Get() { return m_Wrapper.m_Paused; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PausedActions set) { return set.Get(); }
+        public void SetCallbacks(IPausedActions instance)
+        {
+            if (m_Wrapper.m_PausedActionsCallbackInterface != null)
+            {
+                @Unpause.started -= m_Wrapper.m_PausedActionsCallbackInterface.OnUnpause;
+                @Unpause.performed -= m_Wrapper.m_PausedActionsCallbackInterface.OnUnpause;
+                @Unpause.canceled -= m_Wrapper.m_PausedActionsCallbackInterface.OnUnpause;
+                @Select.started -= m_Wrapper.m_PausedActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PausedActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PausedActionsCallbackInterface.OnSelect;
+                @Back.started -= m_Wrapper.m_PausedActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_PausedActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_PausedActionsCallbackInterface.OnBack;
+                @Quit.started -= m_Wrapper.m_PausedActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_PausedActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_PausedActionsCallbackInterface.OnQuit;
+            }
+            m_Wrapper.m_PausedActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Unpause.started += instance.OnUnpause;
+                @Unpause.performed += instance.OnUnpause;
+                @Unpause.canceled += instance.OnUnpause;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
+            }
+        }
+    }
+    public PausedActions @Paused => new PausedActions(this);
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -706,5 +890,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnCycleRight(InputAction.CallbackContext context);
         void OnToggle(InputAction.CallbackContext context);
         void OnOverhead(InputAction.CallbackContext context);
+    }
+    public interface IPausedActions
+    {
+        void OnUnpause(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
 }

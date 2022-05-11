@@ -42,6 +42,7 @@ public class ThirdPersonAiming : MonoBehaviour
     {
         controls = new PlayerControls();
 
+        //Gameplay Controls
         controls.Gameplay.TakeAim.performed += ctx => TakeAim();
         controls.Gameplay.TakeAim.canceled += ctx => StopAim();
         controls.Gameplay.Fire.performed += ctx => Fire();
@@ -72,6 +73,12 @@ public class ThirdPersonAiming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gmScript.isPaused)
+        {
+            controls.Gameplay.Disable();
+        }
+        else controls.Gameplay.Enable();
+
         if (isAiming)
         {
             //rotate piece itself

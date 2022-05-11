@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
 
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
 
-        gmScript.FollowMe(this.transform);
+        if (gmScript.gameEnded == false) gmScript.FollowMe(this.transform);
 
         Destroy(gameObject, lifetime);
     }

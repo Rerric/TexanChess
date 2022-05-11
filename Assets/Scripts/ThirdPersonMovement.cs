@@ -11,6 +11,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public GameObject mainCam;
     public Transform cam;
     private Piece pieceScript;
+    private GameManager gmScript;
 
     Vector2 move;
 
@@ -51,6 +52,7 @@ public class ThirdPersonMovement : MonoBehaviour
         cam = mainCam.GetComponent<Transform>();
         pieceScript = GetComponent<Piece>();
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         isFlying = false;
     }
@@ -69,6 +71,12 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gmScript.isPaused)
+        {
+            controls.Gameplay.Disable();
+        }
+        else controls.Gameplay.Enable();
+
         CheckPhysics();
 
         if (isGrounded && velocity.y < 0)

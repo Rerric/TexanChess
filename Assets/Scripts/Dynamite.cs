@@ -38,7 +38,7 @@ public class Dynamite : MonoBehaviour
 
         StartCoroutine(Fuse(lifetime - 2f));
 
-        gmScript.FollowMe(this.transform);
+        if (gmScript.gameEnded == false) gmScript.FollowMe(this.transform);
 
         Destroy(gameObject, lifetime);
     }
