@@ -273,11 +273,12 @@ public class Piece : MonoBehaviour
     public void Death()
     {
         var piece = this.gameObject;
-        Debug.Log(piece + " " + "is Ded");
+        
         if (team == 1) gmScript.pieces1.Remove(piece);
         if (team == 2) gmScript.pieces2.Remove(piece);
 
         gmScript.UpdatePieceIDs(team, pieceID);
+        if (myTurn) gmScript.NextTurn(true);
 
         audioScript.PlaySoundPyramind(deathSound, gameObject);
 
