@@ -452,6 +452,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8967021074789952146, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eac511d3ac34c0a4fb0a10a0912dfc83, type: 2}
     - target: {fileID: -8679921383154817045, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -513,6 +517,14 @@ PrefabInstance:
       value: Cowboy Bandana 3D Model
       objectReference: {fileID: 0}
     - target: {fileID: 2083497450740908968, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eac511d3ac34c0a4fb0a10a0912dfc83, type: 2}
+    - target: {fileID: 4098681056186538828, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eac511d3ac34c0a4fb0a10a0912dfc83, type: 2}
+    - target: {fileID: 4881149379297375826, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: eac511d3ac34c0a4fb0a10a0912dfc83, type: 2}
