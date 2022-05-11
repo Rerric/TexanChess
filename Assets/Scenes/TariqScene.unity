@@ -512,6 +512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cowboy Bandana 3D Model
       objectReference: {fileID: 0}
+    - target: {fileID: 2083497450740908968, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eac511d3ac34c0a4fb0a10a0912dfc83, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fa0073b300b5f94dbe3352b9a7d726a, type: 3}
 --- !u!1001 &6981643460120832117
