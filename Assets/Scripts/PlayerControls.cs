@@ -528,6 +528,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Choose"",
+                    ""type"": ""Value"",
+                    ""id"": ""d5be9fab-9005-439b-8eee-89f490d20d0d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -607,6 +616,127 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76b650a6-1980-47b4-ab5e-e336ee9276fc"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""43af7cd5-0cde-4fd1-8390-74e0222719c9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b39b3108-7d73-45a5-9854-190f75fc4267"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ad435f2b-2f18-407f-9da9-5cf0d7b2f446"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""79bab8b0-851c-4db0-80b7-3e21d5dfaa7b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5023f2fc-02f2-4103-b0b9-e21a1b015615"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a24031e8-858a-407f-b7c6-0e74bd0557f3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8fe21e72-87aa-4d10-91d2-0af05ff85637"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4a26146c-a9f4-40e5-a644-e0ad1617d39b"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""af42abd1-92b3-434e-ba38-d9bae0da99bf"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e08b6fa4-95e1-4412-834e-e935115a5fea"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -634,6 +764,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Paused_Select = m_Paused.FindAction("Select", throwIfNotFound: true);
         m_Paused_Back = m_Paused.FindAction("Back", throwIfNotFound: true);
         m_Paused_Quit = m_Paused.FindAction("Quit", throwIfNotFound: true);
+        m_Paused_Choose = m_Paused.FindAction("Choose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -826,6 +957,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Paused_Select;
     private readonly InputAction m_Paused_Back;
     private readonly InputAction m_Paused_Quit;
+    private readonly InputAction m_Paused_Choose;
     public struct PausedActions
     {
         private @PlayerControls m_Wrapper;
@@ -834,6 +966,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Select => m_Wrapper.m_Paused_Select;
         public InputAction @Back => m_Wrapper.m_Paused_Back;
         public InputAction @Quit => m_Wrapper.m_Paused_Quit;
+        public InputAction @Choose => m_Wrapper.m_Paused_Choose;
         public InputActionMap Get() { return m_Wrapper.m_Paused; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -855,6 +988,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_PausedActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_PausedActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_PausedActionsCallbackInterface.OnQuit;
+                @Choose.started -= m_Wrapper.m_PausedActionsCallbackInterface.OnChoose;
+                @Choose.performed -= m_Wrapper.m_PausedActionsCallbackInterface.OnChoose;
+                @Choose.canceled -= m_Wrapper.m_PausedActionsCallbackInterface.OnChoose;
             }
             m_Wrapper.m_PausedActionsCallbackInterface = instance;
             if (instance != null)
@@ -871,6 +1007,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Choose.started += instance.OnChoose;
+                @Choose.performed += instance.OnChoose;
+                @Choose.canceled += instance.OnChoose;
             }
         }
     }
@@ -897,5 +1036,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnQuit(InputAction.CallbackContext context);
+        void OnChoose(InputAction.CallbackContext context);
     }
 }
