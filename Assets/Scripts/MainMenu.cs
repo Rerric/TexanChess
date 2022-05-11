@@ -12,8 +12,12 @@ public class MainMenu : MonoBehaviour
 
     public int currentSelection;
 
+    public int currentScreen; //0 = title; 1 = HowTo; 2 = Options; 3 = Credits;
+
     public GameObject titleScreen;
+    public GameObject howToScreen;
     public GameObject optionsScreen;
+    public GameObject creditsScreen;
     
 
     // Start is called before the first frame update
@@ -27,6 +31,7 @@ public class MainMenu : MonoBehaviour
         //Menu Controls
         controls.Paused.Choose.performed += ctx => ChooseSelection(ctx.ReadValue<Vector2>().y);
         controls.Paused.Choose.canceled += ctx => choose = Vector2.zero;
+        controls.Paused.Back.performed += ctx => ExitScreen();
         controls.Paused.Quit.performed += ctx => Application.Quit();
 
         currentSelection = 0;
@@ -53,7 +58,30 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsScreen()
     {
+        currentScreen = 2;
         optionsScreen.SetActive(true);
         titleScreen.SetActive(false);
+    }
+
+    public void ExitScreen()
+    {
+        if (currentScreen == 1)
+        {
+            howToScreen.SetActive(false);
+            titleScreen.SetActive(true);
+        }
+
+        if (currentScreen == 2) //if in options
+        {
+            optionsScreen.SetActive(false);
+            titleScreen.SetActive(true);
+        }
+
+        if (currentScreen == 3)
+        {
+            creditsScreen.SetActive(false);
+            titleScreen.SetActive(true);
+        }
+        currentScreen = 0;
     }
 }

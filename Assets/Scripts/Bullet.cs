@@ -32,6 +32,8 @@ public class Bullet : MonoBehaviour
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioScript = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
+        bounces = GlobalSettings.bulletBounces;
+
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
 
         if (gmScript.gameEnded == false) gmScript.FollowMe(this.transform);
