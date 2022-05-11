@@ -47,7 +47,7 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
 
         if (id == 2) //Display Settings
         {
-
+            menuScript.OptionsScreen();
         }
 
         if (id == 3) //Display Credits
