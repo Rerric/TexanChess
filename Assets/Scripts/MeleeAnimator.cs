@@ -109,6 +109,8 @@ public class MeleeAnimator : MonoBehaviour
 
                 if (hit.gameObject.CompareTag("Prop")) //hit a prop
                 {
+                    var prop = hit.gameObject.GetComponent<Prop>();
+                    prop.ImHit();
                     audioScript.PlaySoundPyramind(Sounds[0], hit.gameObject);
                     var hitParticle = Instantiate(particle, hit.gameObject.transform.position, hit.gameObject.transform.rotation);
                     hitParticle.transform.localScale *= 0.5f;

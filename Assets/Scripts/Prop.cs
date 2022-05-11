@@ -7,6 +7,8 @@ public class Prop : MonoBehaviour
     public Rigidbody rb;
     public Collider collider;
 
+    public bool isWaterTower;
+
     private float speed;
     private float damage;
 
@@ -22,12 +24,19 @@ public class Prop : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        if (isWaterTower) rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
         speed = rb.velocity.magnitude;
+    }
+
+    public void ImHit()
+    {
+        rb.constraints = RigidbodyConstraints.None;
     }
 
     void OnCollisionEnter(Collision other)
@@ -59,7 +68,7 @@ public class Prop : MonoBehaviour
 
     void CalculateDamage()
     {
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < velocities.Length; i++)
         {
             if (speed > velocities[i])
             {

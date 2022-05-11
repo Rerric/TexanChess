@@ -73,6 +73,12 @@ public class Bullet : MonoBehaviour
         {
             audioScript.PlaySoundPyramind(hitSounds[0], gameObject);
         }
+        
+        if (collision.gameObject.CompareTag("Prop")) //if its a prop
+        {
+            var hit = collision.gameObject.GetComponent<Prop>();
+            hit.ImHit();
+        }
 
         if (bounces == 0) Destroy(gameObject);
         bounces -= 1;

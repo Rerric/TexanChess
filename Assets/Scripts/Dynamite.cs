@@ -74,6 +74,12 @@ public class Dynamite : MonoBehaviour
                 piece.ImHit();
             }
 
+            if (hit.gameObject.CompareTag("Prop")) //if its a prop
+            {
+                var prop = hit.gameObject.GetComponent<Prop>();
+                prop.ImHit();
+            }
+
             Rigidbody _rb = hit.GetComponent<Rigidbody>();
             if (_rb != null)
             {
