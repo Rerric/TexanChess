@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5353050432201062742}
   - component: {fileID: 8158133958151899434}
   - component: {fileID: 8312719196963557081}
+  - component: {fileID: 8976514110189228243}
   m_Layer: 3
   m_Name: Gold
   m_TagString: Prop
@@ -112,3 +113,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &8976514110189228243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857256159118350467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d75db338af6bcb49b0cbb1ee3096d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  collider: {fileID: 0}
+  isWaterTower: 0
+  velocities: []
+  damageValues: []
+  particle: {fileID: 0}
