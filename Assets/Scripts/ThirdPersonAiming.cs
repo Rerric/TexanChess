@@ -76,8 +76,13 @@ public class ThirdPersonAiming : MonoBehaviour
         if (gmScript.isPaused)
         {
             controls.Gameplay.Disable();
+            moveScript.controls.Gameplay.Disable();
         }
-        else controls.Gameplay.Enable();
+        else
+        {
+            controls.Gameplay.Enable();
+            
+        }
 
         if (isAiming)
         {

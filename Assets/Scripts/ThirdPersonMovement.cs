@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
-    PlayerControls controls;
+    public PlayerControls controls;
 
     public CharacterController controller;
     public GameObject mainCam;
@@ -70,12 +70,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (gmScript.isPaused)
-        {
-            controls.Gameplay.Disable();
-        }
-        else controls.Gameplay.Enable();
+    { 
 
         CheckPhysics();
 
