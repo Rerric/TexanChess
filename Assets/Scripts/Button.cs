@@ -83,14 +83,13 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
 
             if (id == 5) //ads
             {
-                GlobalSettings.adsSensitivity += _dir * 0.1f;
+                GlobalSettings.adsSensitivity += _dir * 0.01f;
             }
 
             if (id == 6) //volume
             {
-                AudioManager.GlobalVolume += _dir * 0.1f;
-                int value = Mathf.RoundToInt(AudioManager.GlobalVolume);
-                Debug.Log(value);
+                GlobalSettings.globalVolume += _dir * 0.1f;
+
             }
 
             if (id == 7) //bullet bounce
@@ -100,7 +99,7 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
 
             if (id == 8) //explosions
             {
-
+                GlobalSettings.explosionSize += _dir * 0.1f;
             }
         }
     }
@@ -111,17 +110,20 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             if (id == 4) //sensitivity
             {
-                textMesh.text = GlobalSettings.sensitivity.ToString();
+                double value = System.Math.Round(GlobalSettings.sensitivity, 2);
+                textMesh.text = value.ToString();
             }
 
             if (id == 5) //ads
             {
-                textMesh.text = GlobalSettings.adsSensitivity.ToString();
+                double value = System.Math.Round(GlobalSettings.adsSensitivity * 10f, 2);
+                textMesh.text = value.ToString();
             }
 
             if (id == 6) //volume
             {
-                textMesh.text = AudioManager.GlobalVolume.ToString();
+                var value = Mathf.RoundToInt(GlobalSettings.globalVolume * 10f);
+                textMesh.text = value.ToString();
             }
 
             if (id == 7) //bullet bounce
@@ -131,7 +133,9 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
 
             if (id == 8) //explosions
             {
-
+                double value = System.Math.Round(GlobalSettings.explosionSize, 2);
+                string message = "x" + value.ToString();
+                textMesh.text = message;
             }
         }
     }

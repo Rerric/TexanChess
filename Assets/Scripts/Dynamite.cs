@@ -13,6 +13,8 @@ public class Dynamite : MonoBehaviour
     public float forceMax; //maximum knockback
     public float forceUp; //how hard the explosion knocks things up
 
+    private float explosionMultiplier; //explosion size multiplier gotten from globalsettings
+
     public float speed;
     
     public float gravity = -9.81f; //note this only affects the piece while the controller is enabled
@@ -40,6 +42,9 @@ public class Dynamite : MonoBehaviour
 
         if (gmScript.gameEnded == false) gmScript.FollowMe(this.transform);
 
+        explosionMultiplier = GlobalSettings.explosionSize;
+        radius *= explosionMultiplier;
+
         Destroy(gameObject, lifetime);
     }
 
@@ -57,7 +62,7 @@ public class Dynamite : MonoBehaviour
         audioScript.PlaySoundPyramind(Sounds[1], gameObject);
         var explosionPoint = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         var explosionParticle = Instantiate(particle, explosionPoint , Quaternion.identity);
-        explosionParticle.transform.localScale *= 1.5f;
+        explosionParticle.transform.localScale *= 1.5f * explosionMultiplier;
 
         Collider[] others = Physics.OverlapSphere(transform.position, radius);
 

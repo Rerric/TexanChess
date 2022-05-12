@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static float GlobalVolume;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        GlobalVolume = 1f;
+   
     }
 
     // Update is called once per frame
     void Update()
     {
-        AudioListener.volume = GlobalVolume;
+        var v = GlobalSettings.globalVolume;
+        AudioListener.volume = v;
     }
 
     public void PlaySoundPyramind(AudioClip clip, GameObject objectToPlayOn)

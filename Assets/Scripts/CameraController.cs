@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
     public Transform target;
 
     public float speed;
+    public float maxSpeed;
+    public float adsMaxSpeed;
 
     private Cinemachine.CinemachineInputProvider inputAxisProvider;
 
@@ -35,6 +37,9 @@ public class CameraController : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
+        maxSpeed = GlobalSettings.sensitivity;
+        adsMaxSpeed = GlobalSettings.adsSensitivity;
+
     }
 
     // Update is called once per frame
@@ -52,13 +57,16 @@ public class CameraController : MonoBehaviour
 
         if (isAiming)
         {
+            xAxis.m_MaxSpeed = adsMaxSpeed;
+            yAxis.m_MaxSpeed = adsMaxSpeed;
             animator.SetBool(isAimingParam, false);
 
         }
         else
         {
+            xAxis.m_MaxSpeed = maxSpeed;
+            yAxis.m_MaxSpeed = maxSpeed;
             animator.SetBool(isAimingParam, true);
-            
         }
     }
 

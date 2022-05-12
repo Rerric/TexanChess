@@ -13524,7 +13524,7 @@ MonoBehaviour:
   xAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 0.5
     m_AccelTime: 0.01
     m_DecelTime: 0.01
     m_InputAxisName: Gameplay/Aim
@@ -13542,7 +13542,7 @@ MonoBehaviour:
   yAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 150
+    m_MaxSpeed: 0.5
     m_AccelTime: 0.01
     m_DecelTime: 0.01
     m_InputAxisName: Gameplay/Aim
@@ -13560,6 +13560,8 @@ MonoBehaviour:
   cameraLookAt: {fileID: 1694605529}
   target: {fileID: 0}
   speed: 20
+  maxSpeed: 0
+  adsMaxSpeed: 0
   isAiming: 0
 --- !u!114 &1638252609
 MonoBehaviour:
