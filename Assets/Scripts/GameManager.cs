@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
         controls.Gameplay.Toggle.performed += ctx => ToggleControls();
         controls.Gameplay.Overhead.performed += ctx => ToggleOverhead(); //toggles overhead / bird's eye view camera
         controls.Gameplay.Pause.performed += ctx => TogglePause();
-        controls.Gameplay.Quit.performed += ctx => Application.Quit();
+        controls.Gameplay.Quit.performed += ctx => SceneManager.LoadScene(0);
 
         //Paused Controls
         controls.Paused.Unpause.performed += ctx => TogglePause();

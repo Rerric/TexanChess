@@ -63,6 +63,13 @@ public class MainMenu : MonoBehaviour
         titleScreen.SetActive(false);
     }
 
+    public void HowToScreen()
+    {
+        currentScreen = 1;
+        howToScreen.SetActive(true);
+        titleScreen.SetActive(false);
+    }
+
     public void ExitScreen()
     {
         if (currentScreen == 1)

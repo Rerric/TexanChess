@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public PlayerControls controls;
     public int id;
@@ -57,7 +57,7 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
 
         if (id == 1) //Display How-To and Controls
         {
-
+            menuScript.HowToScreen();
         }
 
         if (id == 2) //Display Settings
@@ -140,6 +140,11 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
         }
     }
 
+    public void Selected()
+    {
+        isSelected = true;
+    }
+
     public void OnSelect(BaseEventData eventData)
     {
         if (eventData.selectedObject == this.gameObject)
@@ -151,5 +156,15 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void OnDeselect(BaseEventData eventData)
     {
             isSelected = false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventdata)
+    {
+        isSelected = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (isSelected) isSelected = false;
     }
 }

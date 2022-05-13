@@ -41,8 +41,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (gmScript.isPaused == false)
         {
@@ -88,7 +87,7 @@ public class Bullet : MonoBehaviour
         var _speed = movementDirection.magnitude;
         var direction = Vector3.Reflect(movementDirection.normalized, collision.contacts[0].normal);
 
-        rb.velocity = direction * speed * 3.0f;
+        rb.velocity = direction * speed * 2.5f;
 
         gravityOffset += gravityIncrease;
         
