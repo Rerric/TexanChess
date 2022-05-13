@@ -67,7 +67,7 @@ public class Button : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerE
 
         if (id == 3) //Display Credits
         {
-
+            menuScript.CreditsScreen();
         }
     }
 

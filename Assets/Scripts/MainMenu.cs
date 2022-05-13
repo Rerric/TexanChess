@@ -70,6 +70,13 @@ public class MainMenu : MonoBehaviour
         titleScreen.SetActive(false);
     }
 
+    public void CreditsScreen()
+    {
+        currentScreen = 3;
+        creditsScreen.SetActive(true);
+        titleScreen.SetActive(false);
+    }
+
     public void ExitScreen()
     {
         if (currentScreen == 1)
